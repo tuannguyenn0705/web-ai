@@ -60,7 +60,8 @@
 
             {{-- Quick Search Trigger --}}
             <button type="button" 
-                    onclick="toggleSearchModal()"
+                    id="searchTriggerBtn"
+                    onclick="toggleSearchModal(event)"
                     title="Tìm kiếm bài viết"
                     class="w-7 h-7 rounded-full hover:bg-gray-100 text-gray-500 hover:text-gray-900 flex items-center justify-center transition-all cursor-pointer">
                 <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -80,7 +81,7 @@
                     onclick="toggleMobileMenu()"
                     class="md:hidden w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-800 flex items-center justify-center transition-all">
                 <svg id="hamburgerIcon" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h16"/>
                 </svg>
                 <svg id="closeIcon" class="w-4 h-4 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
@@ -96,8 +97,9 @@
             <svg class="w-4 h-4 text-gray-400 absolute left-3.5 top-1/2 -translate-y-1/2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
             </svg>
-            <input type="text" name="search" placeholder="Tìm kiếm công cụ, tin tức AI..."
+            <input type="text" name="search" id="navSearchInput" placeholder="Tìm kiếm công cụ, tin tức AI..."
                    value="{{ request('search') }}"
+                   autocomplete="off"
                    class="w-full bg-gray-50 border border-gray-200 rounded-xl py-2 pl-10 pr-20 text-xs text-gray-900 placeholder-gray-400 focus:outline-none focus:border-orange-500">
             <button type="submit" class="absolute right-1.5 px-3 py-1 bg-gray-950 hover:bg-gray-800 text-white text-[11px] font-semibold rounded-lg transition-colors">
                 Tìm
@@ -189,10 +191,60 @@ function copyContactEmail() {
     });
 }
 
-function toggleSearchModal() {
+function openSearchModal() {
     const modal = document.getElementById('navSearchModal');
-    modal.classList.toggle('hidden');
+    if (!modal) return;
+    modal.classList.remove('hidden');
+    const input = document.getElementById('navSearchInput') || modal.querySelector('input[name="search"]');
+    if (input) {
+        setTimeout(() => {
+            input.focus();
+            input.select();
+        }, 50);
+    }
 }
+
+function closeSearchModal() {
+    const modal = document.getElementById('navSearchModal');
+    if (modal && !modal.classList.contains('hidden')) {
+        modal.classList.add('hidden');
+    }
+}
+
+function toggleSearchModal(event) {
+    if (event) {
+        event.stopPropagation();
+    }
+    const modal = document.getElementById('navSearchModal');
+    if (!modal) return;
+    
+    if (modal.classList.contains('hidden')) {
+        openSearchModal();
+    } else {
+        closeSearchModal();
+    }
+}
+
+// Click outside or Escape key to dismiss search modal
+document.addEventListener('click', function(event) {
+    const modal = document.getElementById('navSearchModal');
+    const triggerBtn = document.getElementById('searchTriggerBtn');
+    
+    if (!modal || modal.classList.contains('hidden')) return;
+    
+    const isInsideModal = modal.contains(event.target);
+    const isTriggerBtn = triggerBtn && triggerBtn.contains(event.target);
+    
+    if (!isInsideModal && !isTriggerBtn) {
+        closeSearchModal();
+    }
+});
+
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        closeSearchModal();
+    }
+});
 
 function toggleMobileMenu() {
     const sheet = document.getElementById('mobileMenuSheet');
