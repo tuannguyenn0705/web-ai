@@ -4,141 +4,246 @@
 @section('meta_description', $post->excerpt ?? Str::limit(strip_tags($post->content), 160))
 
 @section('content')
-<article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-    {{-- Breadcrumb --}}
-    <nav class="text-sm text-gray-500 mb-6">
-        <a href="{{ route('home') }}" class="hover:text-indigo-600">Trang chủ</a>
-        <span class="mx-2">/</span>
-        <a href="{{ route('categories.show', $post->category->slug ?? '') }}" class="hover:text-indigo-600">
-            {{ $post->category->name ?? 'Chưa phân loại' }}
-        </a>
-        <span class="mx-2">/</span>
-        <span class="text-gray-900">{{ Str::limit($post->title, 50) }}</span>
-    </nav>
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+    
+    {{-- ======================================================== --}}
+    {{-- KHỐI 1: BREADCRUMB & TIÊU ĐỀ BÀI VIẾT (TÁCH BIỆT RÕ RÀNG) --}}
+    {{-- ======================================================== --}}
+    <header class="mb-8 sm:mb-10">
+        {{-- Breadcrumb điều hướng --}}
+        <nav class="flex items-center flex-wrap gap-2 text-xs sm:text-sm text-gray-500 mb-5">
+            <a href="{{ route('home') }}" class="hover:text-gray-900 transition">Trang chủ</a>
+            <span class="text-gray-300">/</span>
+            @if($post->category)
+                <a href="{{ route('categories.show', $post->category->slug) }}" class="hover:text-gray-900 transition">
+                    {{ $post->category->name }}
+                </a>
+                <span class="text-gray-300">/</span>
+            @endif
+            <span class="text-gray-900 font-medium truncate max-w-xs sm:max-w-md">{{ $post->title }}</span>
+        </nav>
 
-    {{-- Header --}}
-    <header class="mb-8">
-        <div class="flex items-center space-x-2 mb-4">
-            <span class="inline-block bg-indigo-100 text-indigo-700 text-xs font-semibold px-3 py-1 rounded-full">
-                {{ $post->category->name ?? '' }}
-            </span>
-            <span class="text-xs text-gray-500">
+        {{-- Nhóm nhãn phân loại & Loại bài viết --}}
+        <div class="flex flex-wrap items-center gap-2.5 mb-4">
+            @if($post->category)
+                <a href="{{ route('categories.show', $post->category->slug) }}"
+                   class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-orange-50 text-orange-700 border border-orange-200/70 hover:bg-orange-100 transition">
+                    {{ $post->category->name }}
+                </a>
+            @endif
+
+            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-700 border border-gray-200">
                 @switch($post->type)
-                    @case('news') 📰 Tin tức @break
-                    @case('review') ⭐ Review @break
-                    @case('tutorial') 📚 Hướng dẫn @break
-                    @case('update') 🔄 Cập nhật @break
+                    @case('news') Tin tức @break
+                    @case('review') Đánh giá @break
+                    @case('tutorial') Hướng dẫn @break
+                    @case('update') Cập nhật @break
+                    @default Bài viết
                 @endswitch
+            </span>
+
+            @php
+                $wordCount = str_word_count(strip_tags($post->content));
+                $readingMinutes = max(1, (int) ceil($wordCount / 200));
+            @endphp
+            <span class="text-xs text-gray-400 font-medium">
+                {{ $readingMinutes }} phút đọc
             </span>
         </div>
 
-        <h1 class="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-4">
+        {{-- Tiêu đề H1 lớn, sắc nét, căn chỉnh mép cùng Navbar --}}
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-950 tracking-tight leading-[1.2] font-sans mb-5">
             {{ $post->title }}
         </h1>
 
+        {{-- Đoạn Sapo / Tóm tắt mở đầu (nếu có) --}}
         @if($post->excerpt)
-            <p class="text-lg text-gray-600 leading-relaxed">{{ $post->excerpt }}</p>
+            <div class="text-lg sm:text-xl text-gray-600 font-normal leading-relaxed mb-6 max-w-5xl">
+                {{ $post->excerpt }}
+            </div>
         @endif
 
-        <div class="flex items-center space-x-4 mt-6 text-sm text-gray-500">
-            <span class="font-medium text-gray-700">{{ $post->author->name ?? 'Admin' }}</span>
-            <span>{{ $post->published_at?->format('d/m/Y H:i') }}</span>
-            <span>👁 {{ number_format($post->views_count) }} lượt xem</span>
+        {{-- Thanh thông tin tác giả, ngày đăng, lượt xem --}}
+        <div class="flex flex-wrap items-center gap-4 sm:gap-6 text-xs sm:text-sm text-gray-500 pt-4 border-t border-gray-200/80">
+            <div class="flex items-center gap-2">
+                <div class="w-7 h-7 rounded-full bg-gray-900 text-white flex items-center justify-center text-xs font-bold uppercase">
+                    {{ substr($post->author->name ?? 'A', 0, 1) }}
+                </div>
+                <span class="font-medium text-gray-800">{{ $post->author->name ?? 'Ban Biên Tập' }}</span>
+            </div>
+            <span class="text-gray-300">•</span>
+            <span>Xuất bản: {{ $post->published_at?->format('d/m/Y') ?? $post->created_at->format('d/m/Y') }}</span>
+            <span class="text-gray-300">•</span>
+            <span>{{ number_format($post->views_count) }} lượt xem</span>
         </div>
     </header>
 
-    {{-- Featured Image --}}
+    {{-- ======================================================== --}}
+    {{-- KHỐI 2: ẢNH ĐẠI DIỆN HERO BANNER (TÁCH BIỆT RÕ RÀNG)    --}}
+    {{-- ======================================================== --}}
     @if($post->featured_image)
-    <div class="mb-8 rounded-2xl overflow-hidden shadow-lg">
-        <img src="{{ Storage::url($post->featured_image) }}" alt="{{ $post->title }}"
-             class="w-full h-auto object-cover">
-    </div>
-    @endif
-
-    {{-- Content --}}
-    <div class="prose prose-lg prose-indigo max-w-none mb-10">
-        {!! $post->content !!}
-    </div>
-
-    {{-- Tags --}}
-    @if($post->tags->count() > 0)
-    <div class="border-t border-gray-200 pt-6 mb-8">
-        <div class="flex flex-wrap gap-2">
-            <span class="text-sm text-gray-500 font-medium mr-2">Tags:</span>
-            @foreach($post->tags as $tag)
-                <a href="{{ route('tags.show', $tag->slug) }}"
-                   class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm hover:bg-indigo-100 hover:text-indigo-700 transition">
-                    #{{ $tag->name }}
-                </a>
-            @endforeach
+        <div class="mb-10 sm:mb-14 rounded-2xl sm:rounded-3xl overflow-hidden border border-gray-200/90 shadow-xs bg-gray-100">
+            <img src="{{ Storage::url($post->featured_image) }}" 
+                 alt="{{ $post->title }}"
+                 class="w-full max-h-[580px] aspect-[16/9] sm:aspect-[21/9] lg:aspect-[2.4/1] object-cover">
         </div>
-    </div>
     @endif
 
-    {{-- Related Posts --}}
+    {{-- ======================================================== --}}
+    {{-- KHỐI 3: NỘI DUNG BÀI VIẾT (FULL WIDTH THEO NAVBAR, KHÔNG CÓ SIDEBAR PHỤ) --}}
+    {{-- ======================================================== --}}
+    <article class="mb-12 sm:mb-16">
+        <div class="prose prose-lg sm:prose-xl max-w-none text-gray-800 leading-relaxed font-sans prose-headings:font-bold prose-headings:text-gray-950 prose-headings:tracking-tight prose-a:text-orange-600 prose-a:font-medium hover:prose-a:text-orange-700 prose-img:rounded-2xl prose-img:shadow-xs prose-img:border prose-img:border-gray-200/90 prose-img:my-8 prose-blockquote:border-l-4 prose-blockquote:border-orange-500 prose-blockquote:bg-orange-50/50 prose-blockquote:rounded-r-2xl prose-blockquote:py-3 prose-blockquote:px-6 prose-blockquote:italic">
+            {!! $post->content !!}
+        </div>
+
+        {{-- Thẻ bài viết (Tags) --}}
+        @if($post->tags->count() > 0)
+            <div class="flex flex-wrap items-center gap-2 pt-8 mt-8 border-t border-gray-200/80">
+                <span class="text-xs font-semibold uppercase tracking-wider text-gray-400 mr-2">Chủ đề liên quan:</span>
+                @foreach($post->tags as $tag)
+                    <a href="{{ route('tags.show', $tag->slug) }}"
+                       class="px-3 py-1 bg-gray-100 hover:bg-orange-50 hover:text-orange-700 text-gray-700 rounded-full text-xs font-medium transition border border-gray-200/80">
+                        #{{ $tag->name }}
+                    </a>
+                @endforeach
+            </div>
+        @endif
+    </article>
+
+    {{-- ======================================================== --}}
+    {{-- KHỐI 4: BÀI VIẾT LIÊN QUAN (LƯỚI 3 CỘT Ở DƯỚI)           --}}
+    {{-- ======================================================== --}}
     @if($relatedPosts->count() > 0)
-    <section class="border-t border-gray-200 pt-8 mb-10">
-        <h2 class="text-2xl font-bold text-gray-900 mb-6">📌 Bài viết liên quan</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            @foreach($relatedPosts as $related)
-                @include('posts._card', ['post' => $related])
-            @endforeach
-        </div>
-    </section>
+        <section class="border-t border-gray-200/90 pt-10 sm:pt-14 mb-14">
+            <div class="flex items-center justify-between mb-8">
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-orange-600 block mb-1">Cùng chuyên mục</span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-950 tracking-tight font-sans">
+                        Bài Viết Liên Quan
+                    </h2>
+                </div>
+                <a href="{{ route('posts.index') }}" class="text-xs sm:text-sm font-semibold text-gray-600 hover:text-gray-950 transition">
+                    Xem tất cả bài viết →
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                @foreach($relatedPosts as $related)
+                    <article class="bg-white rounded-2xl border border-gray-200/90 shadow-xs overflow-hidden hover:shadow-md hover:border-gray-300 transition-all duration-300 flex flex-col group">
+                        {{-- Ảnh đại diện thẻ bài --}}
+                        <a href="{{ route('posts.show', $related->slug) }}" class="block aspect-[16/9] bg-gray-100 overflow-hidden relative">
+                            @if($related->featured_image)
+                                <img src="{{ Storage::url($related->featured_image) }}" 
+                                     alt="{{ $related->title }}"
+                                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            @else
+                                <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200 text-gray-400 font-mono text-sm">
+                                    AI Hub 2026
+                                </div>
+                            @endif
+                            <div class="absolute top-3 left-3">
+                                <span class="bg-white/95 backdrop-blur-md text-gray-900 text-[11px] font-semibold px-2.5 py-1 rounded-full shadow-xs border border-gray-200/60">
+                                    {{ $related->category->name ?? 'Tin tức' }}
+                                </span>
+                            </div>
+                        </a>
+
+                        {{-- Thông tin tóm lược --}}
+                        <div class="p-5 flex flex-col flex-grow">
+                            <div class="flex items-center gap-2 text-xs text-gray-400 mb-2">
+                                <span>{{ $related->published_at?->format('d/m/Y') ?? $related->created_at->format('d/m/Y') }}</span>
+                                <span>•</span>
+                                <span>{{ number_format($related->views_count) }} lượt xem</span>
+                            </div>
+
+                            <h3 class="text-base sm:text-lg font-bold text-gray-950 group-hover:text-orange-600 transition-colors line-clamp-2 mb-2 leading-snug">
+                                <a href="{{ route('posts.show', $related->slug) }}">
+                                    {{ $related->title }}
+                                </a>
+                            </h3>
+
+                            <p class="text-xs sm:text-sm text-gray-600 line-clamp-2 leading-relaxed mb-4 flex-grow">
+                                {{ $related->excerpt ?? Str::limit(strip_tags($related->content), 100) }}
+                            </p>
+
+                            <div class="pt-3 border-t border-gray-100 flex items-center justify-between text-xs text-gray-500">
+                                <span class="font-medium text-gray-700">{{ $related->author->name ?? 'AI Hub' }}</span>
+                                <span class="font-semibold text-orange-600 group-hover:translate-x-1 transition-transform">Đọc bài →</span>
+                            </div>
+                        </div>
+                    </article>
+                @endforeach
+            </div>
+        </section>
     @endif
 
-    {{-- Comments Section --}}
-    <section class="border-t border-gray-200 pt-8" id="comments">
-        <h2 class="text-2xl font-bold text-gray-900 mb-6">
-            💬 Bình luận ({{ $post->comments->count() }})
+    {{-- ======================================================== --}}
+    {{-- KHỐI 5: BÌNH LUẬN BÀI VIẾT                              --}}
+    {{-- ======================================================== --}}
+    <section class="border-t border-gray-200/90 pt-10 sm:pt-14" id="comments">
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-950 tracking-tight font-sans mb-8">
+            Bình Luận ({{ $post->comments->count() }})
         </h2>
 
-        {{-- Comment Form --}}
-        <div class="bg-gray-50 rounded-xl p-6 mb-8">
-            <h3 class="text-lg font-semibold mb-4">Để lại bình luận</h3>
-            <form action="{{ route('comments.store', $post->id) }}" method="POST">
+        {{-- Form gửi bình luận --}}
+        <div class="bg-white rounded-2xl border border-gray-200/90 p-6 sm:p-8 mb-10 shadow-xs">
+            <h3 class="text-base font-bold text-gray-900 mb-4">Để lại suy nghĩ của bạn về bài viết</h3>
+            
+            <form action="{{ route('comments.store', $post->id) }}" method="POST" class="space-y-4">
                 @csrf
 
                 @guest
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                    <input type="text" name="guest_name" placeholder="Tên của bạn *" required
-                           class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
-                    <input type="email" name="guest_email" placeholder="Email *" required
-                           class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
-                </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-semibold uppercase text-gray-600 mb-1.5">Tên của bạn *</label>
+                            <input type="text" name="guest_name" required placeholder="Nguyễn Văn A"
+                                   class="w-full px-4 py-2.5 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-gray-900">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold uppercase text-gray-600 mb-1.5">Email liên hệ *</label>
+                            <input type="email" name="guest_email" required placeholder="email@example.com"
+                                   class="w-full px-4 py-2.5 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-gray-900">
+                        </div>
+                    </div>
                 @endguest
 
-                <textarea name="content" rows="4" placeholder="Viết bình luận..." required
-                          class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent mb-4"></textarea>
+                <div>
+                    <label class="block text-xs font-semibold uppercase text-gray-600 mb-1.5">Nội dung bình luận *</label>
+                    <textarea name="content" rows="4" required placeholder="Chia sẻ góc nhìn hoặc thắc mắc của bạn..."
+                              class="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-gray-900 leading-relaxed"></textarea>
+                </div>
 
                 <button type="submit"
-                        class="px-6 py-2 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 transition">
+                        class="px-6 py-2.5 bg-gray-950 hover:bg-gray-800 text-white font-semibold rounded-xl text-sm transition shadow-xs cursor-pointer">
                     Gửi bình luận
                 </button>
             </form>
         </div>
 
-        {{-- Comments List --}}
-        @forelse($post->comments as $comment)
-        <div class="bg-white rounded-xl p-5 mb-4 shadow-sm">
-            <div class="flex items-center space-x-3 mb-3">
-                <div class="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center">
-                    <span class="text-indigo-600 font-semibold">
-                        {{ strtoupper(substr($comment->user->name ?? $comment->guest_name ?? 'A', 0, 1)) }}
-                    </span>
+        {{-- Danh sách bình luận --}}
+        <div class="space-y-4">
+            @forelse($post->comments as $comment)
+                <div class="bg-white rounded-2xl border border-gray-200/80 p-5 shadow-xs">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-9 h-9 rounded-full bg-orange-100 text-orange-700 flex items-center justify-center font-bold text-sm">
+                            {{ strtoupper(substr($comment->user->name ?? $comment->guest_name ?? 'A', 0, 1)) }}
+                        </div>
+                        <div>
+                            <p class="font-bold text-gray-900 text-sm">
+                                {{ $comment->user->name ?? $comment->guest_name ?? 'Bạn đọc ẩn danh' }}
+                            </p>
+                            <p class="text-xs text-gray-400">{{ $comment->created_at->diffForHumans() }}</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 text-sm leading-relaxed">{{ $comment->content }}</p>
                 </div>
-                <div>
-                    <p class="font-semibold text-gray-900 text-sm">
-                        {{ $comment->user->name ?? $comment->guest_name ?? 'Ẩn danh' }}
-                    </p>
-                    <p class="text-xs text-gray-400">{{ $comment->created_at->diffForHumans() }}</p>
+            @empty
+                <div class="text-center py-10 bg-white rounded-2xl border border-dashed border-gray-200 text-gray-400 text-sm">
+                    Chưa có bình luận nào cho bài viết này. Hãy là người đầu tiên chia sẻ góc nhìn!
                 </div>
-            </div>
-            <p class="text-gray-700">{{ $comment->content }}</p>
+            @endforelse
         </div>
-        @empty
-            <p class="text-gray-500 text-center py-8">Chưa có bình luận nào. Hãy là người đầu tiên!</p>
-        @endforelse
     </section>
-</article>
+</div>
 @endsection

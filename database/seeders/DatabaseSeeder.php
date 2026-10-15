@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
 use App\Models\Category;
-use App\Models\Tag;
 use App\Models\Post;
 use App\Models\Setting;
+use App\Models\Tag;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 
@@ -18,12 +18,23 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // === Tạo Admin User ===
-        $admin = User::create([
-            'name' => 'Admin',
-            'email' => 'admin@ainewshub.com',
-            'password' => bcrypt('password'),
-            'email_verified_at' => now(),
-        ]);
+        $admin = User::firstOrCreate(
+            ['email' => 'adminaihub@gmail.com'],
+            [
+                'name' => 'Admin AI Hub',
+                'password' => bcrypt('Tuan2006@'),
+                'email_verified_at' => now(),
+            ]
+        );
+
+        User::firstOrCreate(
+            ['email' => 'admin@ainewshub.com'],
+            [
+                'name' => 'Admin',
+                'password' => bcrypt('password'),
+                'email_verified_at' => now(),
+            ]
+        );
 
         // === Tạo Categories ===
         $categories = [
@@ -41,8 +52,8 @@ class DatabaseSeeder extends Seeder
 
         // === Tạo Tags ===
         $tagNames = ['ChatGPT', 'GPT-4', 'Gemini', 'Claude', 'Midjourney', 'Stable Diffusion', 'LLM',
-                      'Machine Learning', 'Deep Learning', 'NLP', 'Computer Vision', 'Prompt Engineering',
-                      'AI Agent', 'RAG', 'Fine-tuning', 'Open Source'];
+            'Machine Learning', 'Deep Learning', 'NLP', 'Computer Vision', 'Prompt Engineering',
+            'AI Agent', 'RAG', 'Fine-tuning', 'Open Source'];
 
         $tags = [];
         foreach ($tagNames as $name) {

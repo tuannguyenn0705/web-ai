@@ -19,4 +19,16 @@
     .animate-marquee-vertical {
         animation: marquee-vertical 30s linear infinite;
     }
+
+    /* Quill WYSIWYG Formatted Content Utilities */
+    .ql-align-center { text-align: center !important; }
+    .ql-align-right { text-align: right !important; }
+    .ql-align-justify { text-align: justify !important; }
+    .ql-size-small { font-size: 0.85em !important; }
+    .ql-size-large { font-size: 1.35em !important; font-weight: 600; }
+    .ql-size-huge { font-size: 1.75em !important; font-weight: 700; }
+    .ql-indent-1 { padding-left: 2rem !important; }
+    .ql-indent-2 { padding-left: 4rem !important; }
+    .ql-indent-3 { padding-left: 6rem !important; }
+    .ql-indent-4 { padding-left: 8rem !important; }
 }

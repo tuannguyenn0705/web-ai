@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
-use App\Models\Category;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -25,8 +24,8 @@ class PostController extends Controller
             $search = $request->search;
             $query->where(function ($q) use ($search) {
                 $q->where('title', 'like', "%{$search}%")
-                  ->orWhere('excerpt', 'like', "%{$search}%")
-                  ->orWhere('content', 'like', "%{$search}%");
+                    ->orWhere('excerpt', 'like', "%{$search}%")
+                    ->orWhere('content', 'like', "%{$search}%");
             });
         }
 
@@ -50,14 +49,25 @@ class PostController extends Controller
         // Tăng lượt xem
         $post->incrementViews();
 
-        // Bài viết liên quan
+        // Bài viết liên quan (ưu tiên cùng danh mục, lấy 3 bài cho lưới 3 cột)
         $relatedPosts = Post::published()
             ->where('category_id', $post->category_id)
             ->where('id', '!=', $post->id)
             ->with(['category', 'author'])
             ->latest('published_at')
-            ->take(4)
+            ->take(3)
             ->get();
+
+        if ($relatedPosts->count() < 3) {
+            $excludeIds = $relatedPosts->pluck('id')->push($post->id)->all();
+            $morePosts = Post::published()
+                ->whereNotIn('id', $excludeIds)
+                ->with(['category', 'author'])
+                ->latest('published_at')
+                ->take(3 - $relatedPosts->count())
+                ->get();
+            $relatedPosts = $relatedPosts->concat($morePosts);
+        }
 
         return view('posts.show', compact('post', 'relatedPosts'));
     }

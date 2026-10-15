@@ -118,18 +118,6 @@
                     {{ $item['label'] }}
                 </a>
             @endforeach
-
-            <div class="pt-2 border-t border-gray-100"></div>
-
-            @auth
-                <a href="{{ route('admin.dashboard') }}" class="text-xs font-semibold text-orange-600 py-1.5">
-                    Admin Dashboard →
-                </a>
-            @else
-                <a href="{{ route('login') }}" class="text-xs font-medium text-gray-500 hover:text-gray-900 py-1.5">
-                    Đăng nhập tài khoản
-                </a>
-            @endauth
         </div>
     </div>
 </header>
