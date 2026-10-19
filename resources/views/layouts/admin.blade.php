@@ -140,8 +140,8 @@
             </header>
 
             {{-- Nội dung trang: CHỈ DUY NHẤT KHU VỰC NÀY CUỘN CHUỘT --}}
-            <main class="flex-1 overflow-y-auto p-6 sm:p-8">
-                <div class="max-w-7xl w-full mx-auto">
+            <main class="flex-1 overflow-y-auto">
+                <div class="max-w-7xl w-full mx-auto p-6 sm:p-8">
                     {{-- Thông báo Flash message sạch sẽ --}}
                     @if(session('success'))
                         <div class="mb-6 bg-emerald-50 border border-emerald-200 text-emerald-800 px-4 py-3 rounded-xl text-sm font-medium shadow-xs">

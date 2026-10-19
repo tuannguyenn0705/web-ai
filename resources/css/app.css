@@ -27,8 +27,97 @@
     .ql-size-small { font-size: 0.85em !important; }
     .ql-size-large { font-size: 1.35em !important; font-weight: 600; }
     .ql-size-huge { font-size: 1.75em !important; font-weight: 700; }
-    .ql-indent-1 { padding-left: 2rem !important; }
-    .ql-indent-2 { padding-left: 4rem !important; }
-    .ql-indent-3 { padding-left: 6rem !important; }
-    .ql-indent-4 { padding-left: 8rem !important; }
+    .prose :not(li).ql-indent-1 { padding-left: 2rem !important; }
+    .prose :not(li).ql-indent-2 { padding-left: 4rem !important; }
+    .prose :not(li).ql-indent-3 { padding-left: 6rem !important; }
+    .prose :not(li).ql-indent-4 { padding-left: 8rem !important; }
+
+    /* Quill 2.0 Lists (data-list="ordered" & data-list="bullet") in Client Prose */
+    .prose ol:has(> li[data-list]) {
+        list-style-type: none !important;
+        padding-left: 0 !important;
+        counter-reset: quill-list-0 quill-list-1 quill-list-2 quill-list-3 quill-list-4;
+    }
+
+    .prose ol > li[data-list] {
+        list-style-type: none !important;
+        position: relative;
+        padding-left: 1.75em !important;
+    }
+
+    .prose ol > li[data-list]::marker {
+        content: "" !important;
+        display: none !important;
+    }
+
+    .prose ol > li[data-list] > .ql-ui {
+        display: none !important;
+    }
+
+    .prose ol > li[data-list].ql-indent-1 { margin-left: 2rem !important; }
+    .prose ol > li[data-list].ql-indent-2 { margin-left: 4rem !important; }
+    .prose ol > li[data-list].ql-indent-3 { margin-left: 6rem !important; }
+    .prose ol > li[data-list].ql-indent-4 { margin-left: 8rem !important; }
+
+    /* Ordered list items (1., 2., 3...) */
+    .prose ol > li[data-list="ordered"]:not([class*="ql-indent-"]) {
+        counter-increment: quill-list-0;
+        counter-reset: quill-list-1 quill-list-2 quill-list-3 quill-list-4;
+    }
+
+    .prose ol > li[data-list="ordered"]:not([class*="ql-indent-"])::before {
+        content: counter(quill-list-0, decimal) ".";
+        position: absolute;
+        left: 0;
+        width: 1.4em;
+        text-align: right;
+        font-weight: 600;
+        color: #374151;
+    }
+
+    .prose ol > li[data-list="ordered"].ql-indent-1 {
+        counter-increment: quill-list-1;
+        counter-reset: quill-list-2 quill-list-3 quill-list-4;
+    }
+
+    .prose ol > li[data-list="ordered"].ql-indent-1::before {
+        content: counter(quill-list-1, lower-alpha) ".";
+        position: absolute;
+        left: 0;
+        width: 1.4em;
+        text-align: right;
+        font-weight: 600;
+        color: #374151;
+    }
+
+    .prose ol > li[data-list="ordered"].ql-indent-2 {
+        counter-increment: quill-list-2;
+        counter-reset: quill-list-3 quill-list-4;
+    }
+
+    .prose ol > li[data-list="ordered"].ql-indent-2::before {
+        content: counter(quill-list-2, lower-roman) ".";
+        position: absolute;
+        left: 0;
+        width: 1.4em;
+        text-align: right;
+        font-weight: 600;
+        color: #374151;
+    }
+
+    /* Bullet list items (•) */
+    .prose ol > li[data-list="bullet"]::before {
+        content: "\2022";
+        position: absolute;
+        left: 0;
+        width: 1.4em;
+        text-align: center;
+        font-weight: 700;
+        color: #374151;
+    }
+
+    /* Khi danh sách dấu chấm nằm xen kẽ bên trong danh sách đánh số, tự động thụt lề nhẹ cho đẹp mắt */
+    .prose ol:has(> li[data-list="ordered"]) > li[data-list="bullet"]:not([class*="ql-indent-"]) {
+        margin-left: 1.5rem;
+    }
 }

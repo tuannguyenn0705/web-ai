@@ -6,16 +6,195 @@
 @push('styles')
 <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet">
 <style>
+    /* Thanh công cụ thiết kế hiện đại, gọn gàng trên 1 hàng */
     .ql-toolbar.ql-snow {
-        border-top-left-radius: 0.75rem;
-        border-top-right-radius: 0.75rem;
-        border-color: #e2e8f0;
-        background-color: #f8fafc;
-        padding: 12px 14px;
+        position: sticky;
+        top: 0;
+        z-index: 30;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 6px;
+        border-top-left-radius: 0.875rem;
+        border-top-right-radius: 0.875rem;
+        border: 1px solid #e2e8f0;
+        background: rgba(248, 250, 252, 0.96);
+        backdrop-filter: blur(8px);
+        padding: 8px 12px;
+        box-shadow: 0 4px 12px -2px rgba(15, 23, 42, 0.05);
     }
+
+    /* Các nhóm công cụ ngăn cách bằng đường kẻ dọc tinh tế */
+    .ql-toolbar.ql-snow .ql-formats {
+        display: inline-flex !important;
+        align-items: center;
+        gap: 3px;
+        margin-right: 0 !important;
+        padding-right: 7px;
+        border-right: 1px solid #e2e8f0;
+    }
+    .ql-toolbar.ql-snow .ql-formats:last-child {
+        border-right: none;
+        padding-right: 0;
+    }
+
+    /* Nút bấm icon trên thanh công cụ */
+    .ql-toolbar.ql-snow button,
+    .ql-toolbar.ql-snow .ql-picker:not(.ql-header):not(.ql-size) {
+        width: 30px !important;
+        height: 30px !important;
+        padding: 5px !important;
+        border-radius: 7px;
+        display: inline-flex !important;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.15s ease;
+        float: none !important;
+    }
+    .ql-toolbar.ql-snow .ql-picker:not(.ql-header):not(.ql-size) .ql-picker-label {
+        padding: 0 !important;
+        display: inline-flex !important;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        border-radius: 7px;
+        border: 1px solid transparent !important;
+    }
+    .ql-toolbar.ql-snow button:hover,
+    .ql-toolbar.ql-snow .ql-picker:not(.ql-header):not(.ql-size):hover {
+        background-color: #e2e8f0 !important;
+    }
+    .ql-toolbar.ql-snow button.ql-active,
+    .ql-toolbar.ql-snow .ql-picker-label.ql-active {
+        background-color: #fff7ed !important;
+        color: #ea580c !important;
+    }
+    .ql-toolbar.ql-snow button.ql-active .ql-stroke,
+    .ql-toolbar.ql-snow .ql-picker-label.ql-active .ql-stroke {
+        stroke: #ea580c !important;
+    }
+    .ql-toolbar.ql-snow button.ql-active .ql-fill,
+    .ql-toolbar.ql-snow .ql-picker-label.ql-active .ql-fill {
+        fill: #ea580c !important;
+    }
+
+    /* Hộp chọn kí hiệu Kiểu tiêu đề (¶ / H1-H4) & Cỡ chữ (Aa / A- / A+) */
+    .ql-snow .ql-picker.ql-header,
+    .ql-snow .ql-picker.ql-size {
+        width: 54px !important;
+        height: 30px !important;
+        float: none !important;
+    }
+    .ql-snow .ql-picker.ql-header .ql-picker-label,
+    .ql-snow .ql-picker.ql-size .ql-picker-label {
+        display: inline-flex !important;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 0 18px 0 8px !important;
+        height: 100%;
+        width: 100%;
+        border-radius: 7px;
+        border: 1px solid #cbd5e1 !important;
+        background-color: #ffffff;
+        font-family: 'Inter', sans-serif;
+        font-size: 12.5px;
+        font-weight: 700;
+        color: #0f172a !important;
+        transition: all 0.15s ease;
+    }
+    .ql-snow .ql-picker.ql-header .ql-picker-label:hover,
+    .ql-snow .ql-picker.ql-size .ql-picker-label:hover {
+        border-color: #94a3b8 !important;
+        background-color: #f8fafc;
+    }
+    .ql-snow .ql-picker.ql-header .ql-picker-label svg,
+    .ql-snow .ql-picker.ql-size .ql-picker-label svg {
+        right: 3px !important;
+        width: 14px !important;
+    }
+
+    /* Kí hiệu ngắn gọn cho Kiểu tiêu đề */
+    .ql-snow .ql-picker.ql-header .ql-picker-label::before,
+    .ql-snow .ql-picker.ql-header .ql-picker-item::before {
+        content: '¶' !important;
+    }
+    .ql-snow .ql-picker.ql-header .ql-picker-label[data-value="1"]::before,
+    .ql-snow .ql-picker.ql-header .ql-picker-item[data-value="1"]::before {
+        content: 'H1' !important;
+    }
+    .ql-snow .ql-picker.ql-header .ql-picker-label[data-value="2"]::before,
+    .ql-snow .ql-picker.ql-header .ql-picker-item[data-value="2"]::before {
+        content: 'H2' !important;
+    }
+    .ql-snow .ql-picker.ql-header .ql-picker-label[data-value="3"]::before,
+    .ql-snow .ql-picker.ql-header .ql-picker-item[data-value="3"]::before {
+        content: 'H3' !important;
+    }
+    .ql-snow .ql-picker.ql-header .ql-picker-label[data-value="4"]::before,
+    .ql-snow .ql-picker.ql-header .ql-picker-item[data-value="4"]::before {
+        content: 'H4' !important;
+    }
+
+    /* Kí hiệu ngắn gọn cho Cỡ chữ */
+    .ql-snow .ql-picker.ql-size .ql-picker-label::before,
+    .ql-snow .ql-picker.ql-size .ql-picker-item::before {
+        content: 'Aa' !important;
+    }
+    .ql-snow .ql-picker.ql-size .ql-picker-label[data-value="small"]::before,
+    .ql-snow .ql-picker.ql-size .ql-picker-item[data-value="small"]::before {
+        content: 'A⁻' !important;
+    }
+    .ql-snow .ql-picker.ql-size .ql-picker-label[data-value="large"]::before,
+    .ql-snow .ql-picker.ql-size .ql-picker-item[data-value="large"]::before {
+        content: 'A⁺' !important;
+    }
+    .ql-snow .ql-picker.ql-size .ql-picker-label[data-value="huge"]::before,
+    .ql-snow .ql-picker.ql-size .ql-picker-item[data-value="huge"]::before {
+        content: 'A⁺⁺' !important;
+    }
+
+    /* Menu xổ xuống gọn đẹp */
+    .ql-snow .ql-picker-options {
+        border-radius: 10px !important;
+        border: 1px solid #e2e8f0 !important;
+        box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.14) !important;
+        padding: 5px !important;
+        margin-top: 6px !important;
+        background-color: #ffffff !important;
+    }
+    .ql-snow .ql-picker.ql-header .ql-picker-options,
+    .ql-snow .ql-picker.ql-size .ql-picker-options {
+        min-width: 64px !important;
+    }
+    .ql-snow .ql-picker.ql-header .ql-picker-item,
+    .ql-snow .ql-picker.ql-size .ql-picker-item {
+        border-radius: 6px;
+        padding: 4px 8px !important;
+        font-family: 'Inter', sans-serif;
+        font-size: 12.5px !important;
+        font-weight: 700;
+        color: #334155;
+        text-align: center;
+        transition: all 0.12s ease;
+    }
+    .ql-snow .ql-picker.ql-header .ql-picker-item::before,
+    .ql-snow .ql-picker.ql-size .ql-picker-item::before {
+        font-size: 12.5px !important;
+        line-height: 1.4 !important;
+    }
+    .ql-snow .ql-picker.ql-header .ql-picker-item:hover,
+    .ql-snow .ql-picker.ql-size .ql-picker-item:hover,
+    .ql-snow .ql-picker.ql-header .ql-picker-item.ql-selected,
+    .ql-snow .ql-picker.ql-size .ql-picker-item.ql-selected {
+        background-color: #fff7ed;
+        color: #ea580c !important;
+    }
+
+    /* Khung soạn thảo văn bản */
     .ql-container.ql-snow {
-        border-bottom-left-radius: 0.75rem;
-        border-bottom-right-radius: 0.75rem;
+        border-bottom-left-radius: 0.875rem;
+        border-bottom-right-radius: 0.875rem;
         border-color: #e2e8f0;
         font-family: inherit;
         font-size: 0.95rem;
@@ -30,11 +209,44 @@
         color: #94a3b8;
         font-style: normal;
     }
-    .ql-snow .ql-picker.ql-header {
-        width: 110px;
+
+    /* Chú thích (Tooltip) hiển thị tức thì khi hover vào các nút công cụ */
+    .ql-toolbar button[data-tooltip],
+    .ql-toolbar .ql-picker[data-tooltip] {
+        position: relative;
     }
-    .ql-snow .ql-picker.ql-size {
-        width: 100px;
+    .ql-toolbar button[data-tooltip]:hover::after,
+    .ql-toolbar .ql-picker[data-tooltip]:not(.ql-expanded):hover::after {
+        content: attr(data-tooltip);
+        position: absolute;
+        top: calc(100% + 8px);
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #0f172a;
+        color: #ffffff;
+        font-family: 'Inter', sans-serif;
+        font-size: 11.5px;
+        font-weight: 500;
+        line-height: 1.3;
+        padding: 5px 10px;
+        border-radius: 6px;
+        white-space: nowrap;
+        z-index: 60;
+        pointer-events: none;
+        box-shadow: 0 4px 12px rgba(15, 23, 42, 0.18);
+    }
+    .ql-toolbar button[data-tooltip]:hover::before,
+    .ql-toolbar .ql-picker[data-tooltip]:not(.ql-expanded):hover::before {
+        content: "";
+        position: absolute;
+        top: calc(100% + 3px);
+        left: 50%;
+        transform: translateX(-50%);
+        border-width: 0 5px 5px 5px;
+        border-style: solid;
+        border-color: transparent transparent #0f172a transparent;
+        z-index: 60;
+        pointer-events: none;
     }
 </style>
 @endpush
@@ -231,15 +443,12 @@
 <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-    // Cấu hình thanh công cụ trực quan đầy đủ như Microsoft Word
+    // Cấu hình thanh công cụ trực quan, chia nhóm gọn đẹp trên 1 hàng
     const toolbarOptions = [
-        [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-        [{ 'size': ['small', false, 'large', 'huge'] }],
+        [{ 'header': [1, 2, 3, 4, false] }, { 'size': ['small', false, 'large', 'huge'] }],
         ['bold', 'italic', 'underline', 'strike'],
         [{ 'color': [] }, { 'background': [] }],
-        [{ 'align': [] }],
-        [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-        [{ 'indent': '-1'}, { 'indent': '+1' }],
+        [{ 'align': [] }, { 'list': 'ordered'}, { 'list': 'bullet' }, { 'indent': '-1'}, { 'indent': '+1' }],
         ['link', 'image', 'blockquote', 'code-block'],
         ['clean']
     ];
@@ -255,6 +464,36 @@ document.addEventListener('DOMContentLoaded', function () {
                     image: handleImageUploadTrigger
                 }
             }
+        }
+    });
+
+    // Gắn chú thích (Tooltip) trực quan khi di chuột vào từng thành phần trên thanh công cụ
+    const toolbarEl = quill.getModule('toolbar').container;
+    const tooltipMap = [
+        { selector: '.ql-header', text: 'Kiểu văn bản (¶ Đoạn văn, H1 - H4 Tiêu đề)' },
+        { selector: '.ql-size', text: 'Cỡ chữ (A⁻ Nhỏ, Aa Vừa, A⁺ Lớn, A⁺⁺ Rất lớn)' },
+        { selector: 'button.ql-bold', text: 'In đậm (Ctrl + B)' },
+        { selector: 'button.ql-italic', text: 'In nghiêng (Ctrl + I)' },
+        { selector: 'button.ql-underline', text: 'Gạch chân (Ctrl + U)' },
+        { selector: 'button.ql-strike', text: 'Gạch ngang chữ' },
+        { selector: '.ql-color', text: 'Chọn màu chữ' },
+        { selector: '.ql-background', text: 'Màu nền chữ (Tô sáng / Highlight)' },
+        { selector: '.ql-align', text: 'Căn lề văn bản (Trái, Giữa, Phải, Đều 2 bên)' },
+        { selector: 'button.ql-list[value="ordered"]', text: 'Danh sách đánh số (1, 2, 3...)' },
+        { selector: 'button.ql-list[value="bullet"]', text: 'Danh sách dấu chấm tròn (•)' },
+        { selector: 'button.ql-indent[value="-1"]', text: 'Giảm thụt lề dòng (Shift + Tab)' },
+        { selector: 'button.ql-indent[value="+1"]', text: 'Tăng thụt lề dòng (Tab)' },
+        { selector: 'button.ql-link', text: 'Chèn liên kết (Link URL)' },
+        { selector: 'button.ql-image', text: 'Chèn hình ảnh từ máy tính' },
+        { selector: 'button.ql-blockquote', text: 'Khối trích dẫn (Blockquote)' },
+        { selector: 'button.ql-code-block', text: 'Khối mã nguồn (Code block)' },
+        { selector: 'button.ql-clean', text: 'Xóa định dạng vùng đang chọn' }
+    ];
+
+    tooltipMap.forEach(item => {
+        const el = toolbarEl.querySelector(item.selector);
+        if (el) {
+            el.setAttribute('data-tooltip', item.text);
         }
     });
 
