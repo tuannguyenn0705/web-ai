@@ -15,7 +15,7 @@ class PostController extends Controller
         $query = Post::published()->with(['category', 'author', 'tags']);
 
         // Lọc theo loại bài viết
-        if ($request->has('type')) {
+        if ($request->filled('type') && in_array($request->type, ['news', 'review', 'tutorial'])) {
             $query->ofType($request->type);
         }
 
@@ -29,7 +29,7 @@ class PostController extends Controller
             });
         }
 
-        $posts = $query->latest('published_at')->paginate(15);
+        $posts = $query->latest('published_at')->paginate(15)->withQueryString();
 
         return view('posts.index', compact('posts'));
     }

@@ -54,11 +54,11 @@
 
                         <div class="space-y-1">
                             <a href="{{ route('admin.posts.index') }}"
-                               class="flex items-center justify-between px-4 py-2.5 text-sm rounded-xl transition {{ request()->routeIs('admin.posts.*') && !request('type') && !request()->routeIs('admin.posts.create') ? 'bg-white text-slate-900 font-semibold shadow-xs border border-slate-200/90' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-200/60 font-medium' }}">
+                               class="flex items-center justify-between px-4 py-2.5 text-sm rounded-xl transition {{ request()->routeIs('admin.posts.*') && !request('type') ? 'bg-white text-slate-900 font-semibold shadow-xs border border-slate-200/90' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-200/60 font-medium' }}">
                                 <span>Tất cả bài viết</span>
                             </a>
 
-                            {{-- 4 Nhóm bài viết con --}}
+                            {{-- 3 Nhóm bài viết con --}}
                             <div class="pl-3.5 pt-1 pb-1 space-y-1 border-l-2 border-slate-300 ml-4 my-1.5">
                                 <a href="{{ route('admin.posts.index', ['type' => 'news']) }}"
                                    class="flex items-center justify-between px-3 py-2 text-xs rounded-lg transition {{ request('type') === 'news' ? 'bg-white text-blue-700 font-semibold shadow-xs border border-blue-200' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-200/50 font-medium' }}">
@@ -72,20 +72,25 @@
                                    class="flex items-center justify-between px-3 py-2 text-xs rounded-lg transition {{ request('type') === 'tutorial' ? 'bg-white text-purple-700 font-semibold shadow-xs border border-purple-200' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-200/50 font-medium' }}">
                                     <span>Hướng dẫn (Tutorial)</span>
                                 </a>
-                                <a href="{{ route('admin.posts.index', ['type' => 'update']) }}"
-                                   class="flex items-center justify-between px-3 py-2 text-xs rounded-lg transition {{ request('type') === 'update' ? 'bg-white text-emerald-700 font-semibold shadow-xs border border-emerald-200' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-200/50 font-medium' }}">
-                                    <span>Cập nhật AI</span>
-                                </a>
                             </div>
+                        </div>
+                    </div>
 
-                            <a href="{{ route('admin.posts.create') }}"
-                               class="flex items-center justify-center px-4 py-2.5 text-sm rounded-xl transition mt-2.5 {{ request()->routeIs('admin.posts.create') ? 'bg-orange-600 text-white font-semibold shadow-xs' : 'bg-orange-50/80 text-orange-700 hover:bg-orange-100 font-semibold border border-orange-200/80' }}">
-                                + Viết bài mới
+                    {{-- Mục 3: Quản lý Deals (Affiliate) --}}
+                    <div>
+                        <div class="px-3 mb-2.5 text-xs font-semibold text-slate-400 uppercase tracking-wider">
+                            Quản Lý Deals
+                        </div>
+
+                        <div class="space-y-1.5">
+                            <a href="{{ route('admin.deals.index') }}"
+                               class="flex items-center justify-between px-4 py-2.5 text-sm rounded-xl transition {{ request()->routeIs('admin.deals.*') ? 'bg-white text-slate-900 font-semibold shadow-xs border border-slate-200/90' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-200/60 font-medium' }}">
+                                <span>Danh sách Deals</span>
                             </a>
                         </div>
                     </div>
 
-                    {{-- Mục 3: Quản lý danh mục --}}
+                    {{-- Mục 4: Quản lý danh mục --}}
                     <div>
                         <div class="px-3 mb-2.5 text-xs font-semibold text-slate-400 uppercase tracking-wider">
                             Cấu Trúc

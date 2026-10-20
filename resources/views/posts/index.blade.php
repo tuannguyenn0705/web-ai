@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Bài viết' . (request('type') ? ' - ' . ucfirst(request('type')) : ''))
+@section('title', 'Articles' . (request('type') ? ' - ' . ucfirst(request('type')) : ''))
 
 @section('content')
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -9,15 +9,14 @@
         <h1 class="text-3xl font-bold text-gray-900">
             @if(request('type'))
                 @switch(request('type'))
-                    @case('news') 📰 Tin tức AI @break
-                    @case('review') ⭐ Review @break
-                    @case('tutorial') 📚 Hướng dẫn @break
-                    @case('update') 🔄 Cập nhật AI @break
+                    @case('news') AI News @break
+                    @case('review') AI Tool Reviews @break
+                    @case('tutorial') Tutorials & Guides @break
                 @endswitch
             @elseif(request('search'))
-                🔍 Kết quả tìm kiếm: "{{ request('search') }}"
+                Search results for: "{{ request('search') }}"
             @else
-                📝 Tất cả bài viết
+                All Articles
             @endif
         </h1>
     </div>
@@ -25,12 +24,12 @@
     {{-- Filter Tabs --}}
     <div class="flex flex-wrap gap-2 mb-8">
         <a href="{{ route('posts.index') }}"
-           class="px-4 py-2 rounded-full text-sm font-medium {{ !request('type') ? 'bg-indigo-600 text-white' : 'bg-white text-gray-700 border border-gray-200 hover:border-indigo-600' }} transition">
-            Tất cả
+           class="px-5 py-2 rounded-full text-sm font-medium {{ !request('type') ? 'bg-gray-950 text-white shadow-xs' : 'bg-white text-gray-700 border border-gray-200 hover:border-gray-900 hover:text-gray-900' }} transition">
+            All
         </a>
-        @foreach(['news' => '📰 Tin tức', 'review' => '⭐ Review', 'tutorial' => '📚 Hướng dẫn', 'update' => '🔄 Cập nhật'] as $type => $label)
+        @foreach(['news' => 'News', 'review' => 'Reviews', 'tutorial' => 'Tutorials'] as $type => $label)
             <a href="{{ route('posts.index', ['type' => $type]) }}"
-               class="px-4 py-2 rounded-full text-sm font-medium {{ request('type') === $type ? 'bg-indigo-600 text-white' : 'bg-white text-gray-700 border border-gray-200 hover:border-indigo-600' }} transition">
+               class="px-5 py-2 rounded-full text-sm font-medium {{ request('type') === $type ? 'bg-gray-950 text-white shadow-xs' : 'bg-white text-gray-700 border border-gray-200 hover:border-gray-900 hover:text-gray-900' }} transition">
                 {{ $label }}
             </a>
         @endforeach
@@ -41,16 +40,15 @@
         @forelse($posts as $post)
             @include('posts._card', ['post' => $post])
         @empty
-            <div class="col-span-3 text-center py-16 text-gray-500">
-                <div class="text-6xl mb-4">🔍</div>
-                <p class="text-lg">Không tìm thấy bài viết nào.</p>
+            <div class="col-span-3 text-center py-16 bg-white rounded-2xl border border-gray-200/80 text-gray-500">
+                <p class="text-lg font-medium text-gray-700">No articles found matching your search.</p>
             </div>
         @endforelse
     </div>
 
     {{-- Pagination --}}
-    <div class="mt-8">
-        {{ $posts->appends(request()->query())->links() }}
+    <div class="mt-10">
+        {{ $posts->appends(request()->query())->links('vendor.pagination.custom') }}
     </div>
 </div>
 @endsection

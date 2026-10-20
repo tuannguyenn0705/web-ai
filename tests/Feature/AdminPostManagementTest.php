@@ -131,11 +131,11 @@ class AdminPostManagementTest extends TestCase
             'published_at' => now(),
         ]);
 
-        $response = $this->get('/bai-viet/'.$post->slug);
+        $response = $this->get('/posts/'.$post->slug);
 
         $response->assertStatus(200);
         $response->assertSee('Đánh giá chi tiết Claude 3.7 Sonnet');
-        $response->assertSee('Bài Viết Liên Quan');
+        $response->assertSee('Related Articles');
         $response->assertSee('Khảo sát GPT-4.5');
     }
 

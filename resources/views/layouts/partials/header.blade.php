@@ -37,11 +37,11 @@
 
                 @php
                     $navItems = [
-                        ['label' => 'Trang chủ', 'route' => route('home'), 'active' => request()->routeIs('home')],
-                        ['label' => 'Tin tức', 'route' => route('posts.index', ['type' => 'news']), 'active' => request('type') === 'news'],
-                        ['label' => 'Review', 'route' => route('posts.index', ['type' => 'review']), 'active' => request('type') === 'review'],
-                        ['label' => 'Hướng dẫn', 'route' => route('posts.index', ['type' => 'tutorial']), 'active' => request('type') === 'tutorial'],
-                        ['label' => 'Cập nhật', 'route' => route('posts.index', ['type' => 'update']), 'active' => request('type') === 'update'],
+                        ['label' => 'Home', 'route' => route('home'), 'active' => request()->routeIs('home')],
+                        ['label' => 'News', 'route' => route('posts.index', ['type' => 'news']), 'active' => request('type') === 'news'],
+                        ['label' => 'Reviews', 'route' => route('posts.index', ['type' => 'review']), 'active' => request('type') === 'review'],
+                        ['label' => 'Tutorials', 'route' => route('posts.index', ['type' => 'tutorial']), 'active' => request('type') === 'tutorial'],
+                        ['label' => 'Deals', 'route' => route('deals.index'), 'active' => request()->routeIs('deals.*')],
                     ];
                 @endphp
 
@@ -62,7 +62,7 @@
             <button type="button" 
                     id="searchTriggerBtn"
                     onclick="toggleSearchModal(event)"
-                    title="Tìm kiếm bài viết"
+                    title="Search articles"
                     class="w-7 h-7 rounded-full hover:bg-gray-100 text-gray-500 hover:text-gray-900 flex items-center justify-center transition-all cursor-pointer">
                 <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
@@ -73,7 +73,6 @@
             <button id="navActionPill" onclick="copyContactEmail()" 
                     class="bg-gray-950 hover:bg-gray-800 text-white text-xs font-semibold px-4 py-1.5 rounded-full shadow-sm hover:shadow-md hover:scale-105 active:scale-95 transition-all duration-200 flex items-center gap-1.5 cursor-pointer whitespace-nowrap">
                 <span id="navActionText">ai@hub.io</span>
-                <span id="navActionIcon" class="text-orange-400 text-xs font-bold">★</span>
             </button>
 
             {{-- Mobile Menu Hamburger Toggle --}}
@@ -97,12 +96,12 @@
             <svg class="w-4 h-4 text-gray-400 absolute left-3.5 top-1/2 -translate-y-1/2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
             </svg>
-            <input type="text" name="search" id="navSearchInput" placeholder="Tìm kiếm công cụ, tin tức AI..."
+            <input type="text" name="search" id="navSearchInput" placeholder="Search AI tools, news, tutorials..."
                    value="{{ request('search') }}"
                    autocomplete="off"
-                   class="w-full bg-gray-50 border border-gray-200 rounded-xl py-2 pl-10 pr-20 text-xs text-gray-900 placeholder-gray-400 focus:outline-none focus:border-orange-500">
+                   class="w-full bg-gray-50 border border-gray-200 rounded-xl py-2 pl-10 pr-24 text-xs text-gray-900 placeholder-gray-400 focus:outline-none focus:border-orange-500">
             <button type="submit" class="absolute right-1.5 px-3 py-1 bg-gray-950 hover:bg-gray-800 text-white text-[11px] font-semibold rounded-lg transition-colors">
-                Tìm
+                Search
             </button>
         </form>
     </div>
@@ -163,17 +162,14 @@ function copyContactEmail() {
     const email = "contact@ainewshub.com";
     navigator.clipboard.writeText(email).then(() => {
         const text = document.getElementById('navActionText');
-        const icon = document.getElementById('navActionIcon');
         const btn = document.getElementById('navActionPill');
         
         const originalText = text.innerText;
         text.innerHTML = '<span class="text-emerald-400 font-bold">Copied</span>';
-        icon.innerHTML = '<span class="text-emerald-400 font-bold">✓</span>';
         btn.classList.add('ring-2', 'ring-emerald-500/50');
 
         setTimeout(() => {
             text.innerText = originalText;
-            icon.innerText = "★";
             btn.classList.remove('ring-2', 'ring-emerald-500/50');
         }, 2000);
     });

@@ -13,7 +13,7 @@
 @section('content')
 <div class="space-y-6">
 
-    {{-- 1. TYPE TABS: Phân loại theo 4 nhóm nội dung (Không icon, chữ to rõ) --}}
+    {{-- 1. TYPE TABS: Phân loại theo 3 nhóm nội dung (Không icon, chữ to rõ) --}}
     <div class="bg-white p-2 rounded-2xl border border-gray-200/90 shadow-xs flex flex-wrap gap-1.5">
         @php
             $types = [
@@ -21,7 +21,6 @@
                 ['key' => 'news', 'label' => 'Tin tức AI', 'count' => $typeCounts['news'] ?? 0],
                 ['key' => 'review', 'label' => 'Đánh giá (Review)', 'count' => $typeCounts['review'] ?? 0],
                 ['key' => 'tutorial', 'label' => 'Hướng dẫn (Tutorial)', 'count' => $typeCounts['tutorial'] ?? 0],
-                ['key' => 'update', 'label' => 'Cập nhật AI', 'count' => $typeCounts['update'] ?? 0],
             ];
             $currentType = request('type');
         @endphp
@@ -129,7 +128,7 @@
                                                 {{ $post->title }}
                                             </a>
                                         </div>
-                                        <p class="text-xs text-gray-400 font-mono truncate mt-0.5">/bai-viet/{{ $post->slug }}</p>
+                                        <p class="text-xs text-gray-400 font-mono truncate mt-0.5">/posts/{{ $post->slug }}</p>
                                     </div>
                                 </div>
                             </td>
@@ -157,11 +156,6 @@
                                     @case('tutorial')
                                         <span class="px-2.5 py-1 rounded-full text-xs font-medium bg-purple-50 text-purple-800 border border-purple-200/60">
                                             Hướng dẫn
-                                        </span>
-                                        @break
-                                    @case('update')
-                                        <span class="px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-50 text-emerald-800 border border-emerald-200/60">
-                                            Cập nhật
                                         </span>
                                         @break
                                 @endswitch

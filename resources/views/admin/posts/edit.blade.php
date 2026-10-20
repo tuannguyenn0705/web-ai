@@ -291,7 +291,7 @@
                     </label>
                     <input type="text" name="title" id="title" required value="{{ old('title', $post->title) }}"
                            class="w-full px-4 py-2.5 border border-gray-200 rounded-xl text-sm font-medium text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent">
-                    <p class="text-xs text-gray-400 font-mono mt-1">Đường dẫn: /bai-viet/{{ $post->slug }}</p>
+                    <p class="text-xs text-gray-400 font-mono mt-1">Đường dẫn: /posts/{{ $post->slug }}</p>
                 </div>
 
                 {{-- Tóm tắt ngắn (Excerpt) --}}
@@ -398,7 +398,7 @@
                     Phân Loại Bài Viết
                 </h3>
 
-                {{-- Loại bài viết (4 nhóm chức năng) --}}
+                {{-- Loại bài viết (3 nhóm chức năng) --}}
                 <div>
                     <label for="type" class="block text-xs font-medium text-gray-600 mb-1.5">
                         Loại Nội Dung <span class="text-red-500">*</span>
@@ -407,7 +407,6 @@
                         <option value="news" {{ old('type', $post->type) === 'news' ? 'selected' : '' }}>Tin tức AI</option>
                         <option value="review" {{ old('type', $post->type) === 'review' ? 'selected' : '' }}>Đánh giá (Review)</option>
                         <option value="tutorial" {{ old('type', $post->type) === 'tutorial' ? 'selected' : '' }}>Hướng dẫn (Tutorial)</option>
-                        <option value="update" {{ old('type', $post->type) === 'update' ? 'selected' : '' }}>Cập nhật AI</option>
                     </select>
                 </div>
 

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="@yield('meta_description', 'AI News Hub - Cập nhật tin tức, review và hướng dẫn về AI mới nhất')">
+    <meta name="description" content="@yield('meta_description', 'AI News Hub - Latest AI News, In-Depth Tool Reviews, Tutorials & Exclusive Deals')">
     <title>@yield('title', 'AI News Hub') - {{ config('app.name') }}</title>
 
     <!-- CSRF Token -->

@@ -377,7 +377,7 @@
                     Phân Loại Bài Viết
                 </h3>
 
-                {{-- Loại bài viết (4 nhóm chức năng) --}}
+                {{-- Loại bài viết (3 nhóm chức năng) --}}
                 <div>
                     <label for="type" class="block text-xs font-medium text-gray-600 mb-1.5">
                         Loại Nội Dung <span class="text-red-500">*</span>
@@ -386,7 +386,6 @@
                         <option value="news" {{ old('type') === 'news' ? 'selected' : '' }}>Tin tức AI</option>
                         <option value="review" {{ old('type') === 'review' ? 'selected' : '' }}>Đánh giá (Review)</option>
                         <option value="tutorial" {{ old('type') === 'tutorial' ? 'selected' : '' }}>Hướng dẫn (Tutorial)</option>
-                        <option value="update" {{ old('type') === 'update' ? 'selected' : '' }}>Cập nhật AI</option>
                     </select>
                 </div>
 

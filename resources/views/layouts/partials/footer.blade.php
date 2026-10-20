@@ -4,35 +4,34 @@
         <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
             {{-- About --}}
             <div class="col-span-1 md:col-span-2">
-                <h3 class="text-xl font-bold text-white mb-4">🤖 AI News Hub</h3>
+                <h3 class="text-xl font-bold text-white mb-4">AI News Hub</h3>
                 <p class="text-gray-400 mb-4">
-                    Cập nhật tin tức, review công cụ, và hướng dẫn mới nhất về trí tuệ nhân tạo.
-                    Theo dõi chúng tôi để không bỏ lỡ bất kỳ thông tin quan trọng nào về AI.
+                    Your premier destination for breaking artificial intelligence news, in-depth AI tool reviews, step-by-step tutorials, and exclusive software deals.
                 </p>
             </div>
 
             {{-- Quick Links --}}
             <div>
-                <h4 class="text-white font-semibold mb-4">Liên kết nhanh</h4>
+                <h4 class="text-white font-semibold mb-4">Quick Links</h4>
                 <ul class="space-y-2">
-                    <li><a href="{{ route('posts.index', ['type' => 'news']) }}" class="hover:text-white transition">Tin tức AI</a></li>
-                    <li><a href="{{ route('posts.index', ['type' => 'review']) }}" class="hover:text-white transition">Review</a></li>
-                    <li><a href="{{ route('posts.index', ['type' => 'tutorial']) }}" class="hover:text-white transition">Hướng dẫn</a></li>
-                    <li><a href="{{ route('posts.index', ['type' => 'update']) }}" class="hover:text-white transition">Cập nhật</a></li>
+                    <li><a href="{{ route('posts.index', ['type' => 'news']) }}" class="hover:text-white transition">AI News</a></li>
+                    <li><a href="{{ route('posts.index', ['type' => 'review']) }}" class="hover:text-white transition">Reviews</a></li>
+                    <li><a href="{{ route('posts.index', ['type' => 'tutorial']) }}" class="hover:text-white transition">Tutorials</a></li>
+                    <li><a href="{{ route('deals.index') }}" class="hover:text-white transition">Deals</a></li>
                 </ul>
             </div>
 
             {{-- Contact --}}
             <div>
-                <h4 class="text-white font-semibold mb-4">Liên hệ</h4>
-                <ul class="space-y-2">
-                    <li class="flex items-center space-x-2">
-                        <span>📧</span>
-                        <span>contact@ainewshub.com</span>
+                <h4 class="text-white font-semibold mb-4">Contact</h4>
+                <ul class="space-y-2 text-gray-400 text-sm">
+                    <li>
+                        <span class="text-gray-500">Email:</span>
+                        <span class="text-gray-300 ml-1">contact@ainewshub.com</span>
                     </li>
-                    <li class="flex items-center space-x-2">
-                        <span>🌐</span>
-                        <span>ainewshub.com</span>
+                    <li>
+                        <span class="text-gray-500">Website:</span>
+                        <span class="text-gray-300 ml-1">ainewshub.com</span>
                     </li>
                 </ul>
             </div>

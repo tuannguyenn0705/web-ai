@@ -1,33 +1,35 @@
 {{-- Post Card Component --}}
-<article class="bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-lg transition duration-300 group flex flex-col">
-    {{-- Ảnh đại diện --}}
-    <div class="aspect-w-16 aspect-h-9 bg-gradient-to-br from-indigo-400 to-purple-500 h-48 overflow-hidden">
+<article class="bg-white rounded-2xl border border-gray-200/90 shadow-xs overflow-hidden hover:shadow-md transition duration-300 group flex flex-col">
+    {{-- Thumbnail --}}
+    <a href="{{ route('posts.show', $post->slug) }}" class="block aspect-w-16 aspect-h-9 bg-stone-100 h-48 overflow-hidden relative">
         @if($post->featured_image)
             <img src="{{ Storage::url($post->featured_image) }}" alt="{{ $post->title }}"
                  class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
         @else
-            <div class="w-full h-full flex items-center justify-center text-white text-4xl">🤖</div>
+            <div class="w-full h-full bg-gradient-to-br from-slate-800 to-slate-950 flex flex-col items-center justify-center text-white p-4">
+                <span class="text-xs font-bold tracking-widest uppercase text-orange-400 font-mono">AI HUB</span>
+                <span class="text-[11px] text-slate-400 mt-1 font-medium uppercase tracking-wider">{{ $post->category->name ?? 'Article' }}</span>
+            </div>
         @endif
-    </div>
+    </a>
 
     <div class="p-5 flex flex-col flex-grow">
         {{-- Category & Type --}}
         <div class="flex items-center space-x-2 mb-3">
-            <span class="inline-block bg-indigo-100 text-indigo-700 text-xs font-semibold px-2.5 py-0.5 rounded-full">
-                {{ $post->category->name ?? 'Chưa phân loại' }}
+            <span class="inline-block bg-indigo-50 text-indigo-700 border border-indigo-100 text-xs font-semibold px-2.5 py-0.5 rounded-full">
+                {{ $post->category->name ?? 'Uncategorized' }}
             </span>
-            <span class="text-xs text-gray-400">
+            <span class="text-xs font-medium text-gray-400">
                 @switch($post->type)
-                    @case('news') 📰 Tin tức @break
-                    @case('review') ⭐ Review @break
-                    @case('tutorial') 📚 Hướng dẫn @break
-                    @case('update') 🔄 Cập nhật @break
+                    @case('news') News @break
+                    @case('review') Review @break
+                    @case('tutorial') Tutorial @break
                 @endswitch
             </span>
         </div>
 
         {{-- Title --}}
-        <h3 class="text-lg font-bold text-gray-900 mb-2 line-clamp-2 group-hover:text-indigo-600 transition">
+        <h3 class="text-lg font-bold text-gray-900 mb-2 line-clamp-2 group-hover:text-orange-600 transition">
             <a href="{{ route('posts.show', $post->slug) }}">
                 {{ $post->title }}
             </a>
@@ -42,9 +44,9 @@
         <div class="flex items-center justify-between text-xs text-gray-400 border-t border-gray-100 pt-3">
             <div class="flex items-center space-x-3">
                 <span>{{ $post->author->name ?? 'Admin' }}</span>
-                <span>{{ $post->published_at?->format('d/m/Y') }}</span>
+                <span>{{ $post->published_at?->format('M d, Y') }}</span>
             </div>
-            <span>👁 {{ number_format($post->views_count) }}</span>
+            <span>{{ number_format($post->views_count) }} views</span>
         </div>
     </div>
 </article>

@@ -35,7 +35,7 @@
                                 @endif
                             </td>
                             <td class="py-4 px-4 font-mono text-gray-500 text-xs">
-                                /danh-muc/{{ $category->slug }}
+                                /categories/{{ $category->slug }}
                             </td>
                             <td class="py-4 px-4 text-center font-mono font-medium text-xs">
                                 <span class="px-2.5 py-1 rounded-full bg-gray-100 text-gray-700">

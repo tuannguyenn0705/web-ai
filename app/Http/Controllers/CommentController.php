@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Comment;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
@@ -29,6 +28,6 @@ class CommentController extends Controller
             'is_approved' => auth()->check(), // Auto-approve cho user đã đăng nhập
         ]);
 
-        return back()->with('success', 'Bình luận đã được gửi thành công!');
+        return back()->with('success', 'Your comment has been submitted successfully!');
     }
 }

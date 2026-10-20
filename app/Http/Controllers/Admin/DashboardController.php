@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Post;
-use App\Models\Comment;
 use App\Models\Category;
+use App\Models\Comment;
+use App\Models\Deal;
+use App\Models\Post;
 use App\Models\User;
-use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
@@ -20,6 +20,7 @@ class DashboardController extends Controller
             'total_posts' => Post::count(),
             'published_posts' => Post::where('status', 'published')->count(),
             'draft_posts' => Post::where('status', 'draft')->count(),
+            'total_deals' => Deal::count(),
             'total_categories' => Category::count(),
             'total_comments' => Comment::count(),
             'pending_comments' => Comment::where('is_approved', false)->count(),

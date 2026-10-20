@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
 use App\Models\Category;
-use Illuminate\Http\Request;
+use App\Models\Post;
 
 class HomeController extends Controller
 {
@@ -23,7 +22,8 @@ class HomeController extends Controller
         $latestPosts = Post::published()
             ->with(['category', 'author'])
             ->latest('published_at')
-            ->paginate(12);
+            ->take(9)
+            ->get();
 
         $categories = Category::active()
             ->root()

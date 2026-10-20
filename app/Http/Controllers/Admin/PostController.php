@@ -16,7 +16,7 @@ class PostController extends Controller
         $query = Post::with(['category', 'author']);
 
         // Lọc theo loại bài viết
-        if ($request->filled('type') && in_array($request->type, ['news', 'review', 'tutorial', 'update'])) {
+        if ($request->filled('type') && in_array($request->type, ['news', 'review', 'tutorial'])) {
             $query->where('type', $request->type);
         }
 
@@ -48,7 +48,6 @@ class PostController extends Controller
             'news' => Post::where('type', 'news')->count(),
             'review' => Post::where('type', 'review')->count(),
             'tutorial' => Post::where('type', 'tutorial')->count(),
-            'update' => Post::where('type', 'update')->count(),
         ];
 
         return view('admin.posts.index', compact('posts', 'categories', 'typeCounts'));
@@ -69,7 +68,7 @@ class PostController extends Controller
             'content' => 'required|string',
             'excerpt' => 'nullable|string|max:500',
             'category_id' => 'required|exists:categories,id',
-            'type' => 'required|in:news,review,tutorial,update',
+            'type' => 'required|in:news,review,tutorial',
             'status' => 'required|in:draft,published,archived',
             'featured_image' => 'nullable|image|mimes:jpeg,png,jpg,webp,gif|max:5120',
             'is_featured' => 'nullable|boolean',
@@ -123,7 +122,7 @@ class PostController extends Controller
             'content' => 'required|string',
             'excerpt' => 'nullable|string|max:500',
             'category_id' => 'required|exists:categories,id',
-            'type' => 'required|in:news,review,tutorial,update',
+            'type' => 'required|in:news,review,tutorial',
             'status' => 'required|in:draft,published,archived',
             'featured_image' => 'nullable|image|mimes:jpeg,png,jpg,webp,gif|max:5120',
             'is_featured' => 'nullable|boolean',

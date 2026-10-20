@@ -61,9 +61,9 @@
             <p class="text-sm font-bold text-gray-900">Hướng Dẫn (Tutorial)</p>
             <p class="text-xs text-gray-500 mt-0.5">Quản lý chuyên mục</p>
         </a>
-        <a href="{{ route('admin.posts.index', ['type' => 'update']) }}" class="bg-white p-4 rounded-xl border border-gray-200/90 hover:border-emerald-400 hover:shadow-xs transition block">
-            <p class="text-sm font-bold text-gray-900">Cập Nhật AI</p>
-            <p class="text-xs text-gray-500 mt-0.5">Quản lý chuyên mục</p>
+        <a href="{{ route('admin.deals.index') }}" class="bg-white p-4 rounded-xl border border-gray-200/90 hover:border-rose-400 hover:shadow-xs transition block">
+            <p class="text-sm font-bold text-gray-900">Deals (Affiliate)</p>
+            <p class="text-xs text-gray-500 mt-0.5">Quản lý {{ $stats['total_deals'] ?? 0 }} ưu đãi</p>
         </a>
     </div>
 
