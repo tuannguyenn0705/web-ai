@@ -66,19 +66,23 @@ class DealController extends Controller
             'title' => 'required|string|max:255',
             'description' => 'nullable|string|max:500',
             'affiliate_url' => 'required|url|max:1000',
+            'coupon_code' => 'nullable|string|max:60',
             'badge_text' => 'nullable|string|max:50',
             'sub_badge_text' => 'nullable|string|max:80',
             'button_text' => 'nullable|string|max:50',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,webp,gif,svg|max:5120',
             'order' => 'nullable|integer|min:0',
             'is_active' => 'nullable|boolean',
+            'is_featured' => 'nullable|boolean',
         ]);
 
+        $validated['coupon_code'] = trim((string) ($validated['coupon_code'] ?? '')) ?: null;
         $validated['badge_text'] = trim((string) ($validated['badge_text'] ?? '')) ?: 'Deal';
         $validated['sub_badge_text'] = trim((string) ($validated['sub_badge_text'] ?? '')) ?: 'DISCOUNT DEAL';
         $validated['button_text'] = trim((string) ($validated['button_text'] ?? '')) ?: 'Shop Now';
         $validated['order'] = (int) ($validated['order'] ?? 0);
         $validated['is_active'] = $request->boolean('is_active');
+        $validated['is_featured'] = $request->has('is_featured') ? $request->boolean('is_featured') : true;
 
         if ($request->hasFile('image')) {
             $validated['image'] = $request->file('image')->store('deals', 'public');
@@ -107,19 +111,23 @@ class DealController extends Controller
             'title' => 'required|string|max:255',
             'description' => 'nullable|string|max:500',
             'affiliate_url' => 'required|url|max:1000',
+            'coupon_code' => 'nullable|string|max:60',
             'badge_text' => 'nullable|string|max:50',
             'sub_badge_text' => 'nullable|string|max:80',
             'button_text' => 'nullable|string|max:50',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,webp,gif,svg|max:5120',
             'order' => 'nullable|integer|min:0',
             'is_active' => 'nullable|boolean',
+            'is_featured' => 'nullable|boolean',
         ]);
 
+        $validated['coupon_code'] = trim((string) ($validated['coupon_code'] ?? '')) ?: null;
         $validated['badge_text'] = trim((string) ($validated['badge_text'] ?? '')) ?: 'Deal';
         $validated['sub_badge_text'] = trim((string) ($validated['sub_badge_text'] ?? '')) ?: 'DISCOUNT DEAL';
         $validated['button_text'] = trim((string) ($validated['button_text'] ?? '')) ?: 'Shop Now';
         $validated['order'] = (int) ($validated['order'] ?? 0);
         $validated['is_active'] = $request->boolean('is_active');
+        $validated['is_featured'] = $request->has('is_featured') ? $request->boolean('is_featured') : $deal->is_featured;
 
         if ($request->hasFile('image')) {
             if ($deal->image && ! str_starts_with($deal->image, 'http') && ! str_starts_with($deal->image, '/')) {

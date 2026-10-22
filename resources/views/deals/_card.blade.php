@@ -1,12 +1,13 @@
 {{-- HakoReview-style Deal Card Component --}}
-<article class="bg-white rounded-2xl border border-gray-200/90 p-6 shadow-xs hover:shadow-md transition duration-200 flex flex-col justify-between">
+<article class="bg-white rounded-2xl border border-gray-200/90 p-6 shadow-xs hover:shadow-md hover:border-gray-300 transition duration-200 flex flex-col justify-between">
     <div>
         {{-- Top Section: Left Square Thumbnail + Right "Deal" & "DISCOUNT DEAL" --}}
         <div class="flex items-start justify-between gap-4 pb-5 mb-4 border-b border-gray-100">
             {{-- Left Square Image (80x80px) --}}
-            <a href="{{ $deal->affiliate_url }}"
+            <a href="{{ route('deals.go', $deal) }}"
+               data-affiliate-url="{{ $deal->affiliate_url }}"
                target="_blank"
-               rel="noopener noreferrer"
+               rel="noopener noreferrer nofollow"
                class="w-20 h-20 rounded-md overflow-hidden bg-stone-100 border border-gray-100 shrink-0 flex items-center justify-center group">
                 @if($deal->image_url)
                     <img src="{{ $deal->image_url }}"
@@ -33,7 +34,10 @@
 
         {{-- Middle Section: Bold Offer Title & Muted Description --}}
         <h3 class="text-[15px] sm:text-base font-bold text-gray-900 leading-snug mb-1.5 hover:text-[#E11D48] transition">
-            <a href="{{ $deal->affiliate_url }}" target="_blank" rel="noopener noreferrer">
+            <a href="{{ route('deals.go', $deal) }}"
+               data-affiliate-url="{{ $deal->affiliate_url }}"
+               target="_blank"
+               rel="noopener noreferrer nofollow">
                 {{ $deal->title }}
             </a>
         </h3>
@@ -47,13 +51,26 @@
         @endif
     </div>
 
-    {{-- Bottom Section: Outlined "Shop Now" Button linking directly to affiliate ref URL --}}
-    <div>
-        <a href="{{ $deal->affiliate_url }}"
+    {{-- Bottom Section: Outlined "Shop Now" Button + Optional Copyable Coupon Code --}}
+    <div class="flex items-center justify-between gap-2 pt-1">
+        <a href="{{ route('deals.go', $deal) }}"
+           data-affiliate-url="{{ $deal->affiliate_url }}"
            target="_blank"
-           rel="noopener noreferrer"
+           rel="noopener noreferrer nofollow"
            class="inline-flex items-center justify-center px-4 py-1.5 bg-white border border-gray-300 rounded-md text-xs font-bold text-gray-800 hover:bg-gray-900 hover:text-white hover:border-gray-900 transition duration-200">
             {{ $deal->button_text ?: 'Shop Now' }}
         </a>
+
+        @if($deal->coupon_code)
+            <button type="button"
+                    onclick="navigator.clipboard.writeText('{{ e($deal->coupon_code) }}'); const el = this.querySelector('.coupon-label'); const orig = el.innerText; el.innerText = 'COPIED!'; this.classList.add('border-emerald-500', 'text-emerald-700', 'bg-emerald-50'); setTimeout(() => { el.innerText = orig; this.classList.remove('border-emerald-500', 'text-emerald-700', 'bg-emerald-50'); }, 1800);"
+                    title="Click to copy promo code"
+                    class="inline-flex items-center gap-1.5 px-2.5 py-1.5 bg-gray-50 hover:bg-gray-100 border border-dashed border-gray-300 hover:border-gray-500 rounded-md text-[11px] font-mono font-bold text-gray-700 transition cursor-pointer">
+                <svg class="w-3.5 h-3.5 text-gray-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                </svg>
+                <span class="coupon-label">{{ $deal->coupon_code }}</span>
+            </button>
+        @endif
     </div>
 </article>

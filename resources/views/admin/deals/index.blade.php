@@ -79,8 +79,9 @@
                 <thead>
                     <tr class="bg-gray-50/80 border-b border-gray-200 text-gray-500 text-xs uppercase tracking-wider font-semibold">
                         <th class="py-4 px-6">Thông Tin Deal</th>
-                        <th class="py-4 px-4">Nhãn Hiển Thị</th>
+                        <th class="py-4 px-4">Nhãn & Mã Code</th>
                         <th class="py-4 px-4">Link Affiliate (Ref)</th>
+                        <th class="py-4 px-4 text-center">Lượt Click</th>
                         <th class="py-4 px-4 text-center">Thứ Tự</th>
                         <th class="py-4 px-4">Trạng Thái</th>
                         <th class="py-4 px-6 text-right">Thao Tác</th>
@@ -100,9 +101,14 @@
                                         @endif
                                     </div>
                                     <div class="min-w-0">
-                                        <a href="{{ route('admin.deals.edit', $deal) }}" class="font-semibold text-gray-900 hover:text-orange-600 transition truncate block text-sm">
-                                            {{ $deal->title }}
-                                        </a>
+                                        <div class="flex items-center gap-2">
+                                            <a href="{{ route('admin.deals.edit', $deal) }}" class="font-semibold text-gray-900 hover:text-orange-600 transition truncate block text-sm">
+                                                {{ $deal->title }}
+                                            </a>
+                                            @if($deal->is_featured)
+                                                <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-100 text-amber-800 shrink-0">Nổi bật</span>
+                                            @endif
+                                        </div>
                                         @if($deal->description)
                                             <p class="text-xs text-gray-500 truncate mt-0.5">{{ $deal->description }}</p>
                                         @endif
@@ -110,12 +116,19 @@
                                 </div>
                             </td>
 
-                            {{-- Nhãn hiển thị --}}
+                            {{-- Nhãn hiển thị & Mã giảm giá --}}
                             <td class="py-4 px-4 whitespace-nowrap">
                                 <div class="flex flex-col items-start gap-1">
-                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded text-xs font-bold bg-[#E11D48] text-white">
-                                        {{ $deal->badge_text ?: 'Deal' }}
-                                    </span>
+                                    <div class="flex items-center gap-1.5">
+                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded text-xs font-bold bg-[#E11D48] text-white">
+                                            {{ $deal->badge_text ?: 'Deal' }}
+                                        </span>
+                                        @if($deal->coupon_code)
+                                            <span class="px-2 py-0.5 bg-gray-100 border border-dashed border-gray-300 rounded text-xs font-mono font-bold text-gray-800">
+                                                {{ $deal->coupon_code }}
+                                            </span>
+                                        @endif
+                                    </div>
                                     <span class="text-[11px] font-semibold text-gray-400 uppercase tracking-wider">
                                         {{ $deal->sub_badge_text ?: 'DISCOUNT DEAL' }}
                                     </span>
@@ -129,6 +142,13 @@
                                     {{ $deal->affiliate_url }}
                                 </a>
                                 <span class="text-[11px] text-gray-400">Nút: {{ $deal->button_text ?: 'Shop Now' }}</span>
+                            </td>
+
+                            {{-- Lượt Click --}}
+                            <td class="py-4 px-4 text-center">
+                                <span class="inline-flex items-center px-2.5 py-1 rounded-lg bg-orange-50 text-orange-700 font-mono text-xs font-bold">
+                                    {{ number_format($deal->clicks_count ?? 0) }}
+                                </span>
                             </td>
 
                             {{-- Thứ tự --}}
@@ -177,7 +197,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="6" class="py-12 text-center text-gray-400 text-sm">
+                            <td colspan="7" class="py-12 text-center text-gray-400 text-sm">
                                 <p>Chưa có Deal nào trong danh sách.</p>
                                 <a href="{{ route('admin.deals.create') }}" class="inline-block mt-3 text-sm text-orange-600 hover:underline font-semibold">
                                     + Thêm Deal đầu tiên ngay

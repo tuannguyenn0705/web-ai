@@ -9,8 +9,10 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DealController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\SitemapController;
 use App\Http\Controllers\TagController;
 use Illuminate\Support\Facades\Route;
 
@@ -31,6 +33,7 @@ Route::get('/posts/{slug}', [PostController::class, 'show'])->name('posts.show')
 
 // Deals & Affiliate AI
 Route::get('/deals', [DealController::class, 'index'])->name('deals.index');
+Route::get('/deals/{deal}/go', [DealController::class, 'go'])->name('deals.go');
 
 // Categories
 Route::get('/categories/{slug}', [CategoryController::class, 'show'])->name('categories.show');
@@ -38,8 +41,12 @@ Route::get('/categories/{slug}', [CategoryController::class, 'show'])->name('cat
 // Tags
 Route::get('/tags/{slug}', [TagController::class, 'show'])->name('tags.show');
 
-// Static Pages
+// Static Pages & Sitemap
 Route::get('/pages/{slug}', [PageController::class, 'show'])->name('pages.show');
+Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');
+
+// Newsletter Subscription
+Route::post('/newsletter/subscribe', [NewsletterController::class, 'subscribe'])->name('newsletter.subscribe');
 
 // Comments
 Route::post('/posts/{post}/comments', [CommentController::class, 'store'])->name('comments.store');

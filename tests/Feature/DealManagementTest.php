@@ -122,4 +122,52 @@ class DealManagementTest extends TestCase
         $response->assertSeeText('Showing 1 to 15 of 20 results');
         $response->assertSee('?page=2', false);
     }
+
+    public function test_deal_click_tracking_increments_clicks_and_redirects(): void
+    {
+        $deal = Deal::factory()->create([
+            'affiliate_url' => 'https://cursor.com/?ref=clicktest',
+            'clicks_count' => 0,
+        ]);
+
+        $response = $this->get(route('deals.go', $deal));
+
+        $response->assertRedirect('https://cursor.com/?ref=clicktest');
+        $this->assertDatabaseHas('deals', [
+            'id' => $deal->id,
+            'clicks_count' => 1,
+        ]);
+    }
+
+    public function test_static_trust_and_legal_pages_and_sitemap_are_accessible(): void
+    {
+        $slugs = [
+            'about-us',
+            'contact',
+            'affiliate-disclosure',
+            'privacy-policy',
+            'terms-of-service',
+        ];
+
+        foreach ($slugs as $slug) {
+            $this->get(route('pages.show', $slug))->assertStatus(200);
+        }
+
+        $sitemapResponse = $this->get(route('sitemap'));
+        $sitemapResponse->assertStatus(200);
+        $sitemapResponse->assertSee('<urlset', false);
+    }
+
+    public function test_visitor_can_subscribe_to_newsletter(): void
+    {
+        $response = $this->post(route('newsletter.subscribe'), [
+            'email' => 'reader@example.com',
+        ]);
+
+        $response->assertSessionHas('success');
+        $this->assertDatabaseHas('subscribers', [
+            'email' => 'reader@example.com',
+            'is_active' => true,
+        ]);
+    }
 }

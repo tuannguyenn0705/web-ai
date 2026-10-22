@@ -130,10 +130,13 @@ class DatabaseSeeder extends Seeder
         // === Create Sample Deals ===
         $this->call(DealSeeder::class);
 
+        // === Create Essential Legal & Trust Static Pages ===
+        $this->call(PageSeeder::class);
+
         // === Create Settings ===
         Setting::set('site_name', 'AI News Hub');
         Setting::set('site_description', 'Latest AI news, tool reviews, tutorials, and exclusive AI deals');
-        Setting::set('posts_per_page', '12');
+        Setting::set('posts_per_page', '15');
         Setting::set('contact_email', 'contact@ainewshub.com');
     }
 }

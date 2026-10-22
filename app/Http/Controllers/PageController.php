@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Page;
-use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
@@ -16,6 +15,8 @@ class PageController extends Controller
             ->active()
             ->firstOrFail();
 
-        return view('pages.show', compact('page'));
+        $allPages = Page::active()->orderBy('id')->get();
+
+        return view('pages.show', compact('page', 'allPages'));
     }
 }

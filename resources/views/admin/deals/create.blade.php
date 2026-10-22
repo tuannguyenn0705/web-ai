@@ -53,15 +53,25 @@
                               class="w-full px-4 py-2.5 border border-gray-200 rounded-xl text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent leading-relaxed">{{ old('description') }}</textarea>
                 </div>
 
-                {{-- Đường dẫn Link Ref / Affiliate --}}
-                <div>
-                    <label for="affiliate_url" class="block text-xs font-semibold uppercase tracking-wider text-gray-700 mb-1.5">
-                        Đường Dẫn Affiliate / Link Ref <span class="text-red-500">*</span>
-                    </label>
-                    <input type="url" name="affiliate_url" id="affiliate_url" required value="{{ old('affiliate_url') }}"
-                           placeholder="https://..."
-                           class="w-full px-4 py-2.5 border border-gray-200 rounded-xl text-sm font-mono text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent">
-                    <p class="text-xs text-gray-400 mt-1">Khi người dùng nhấn nút "Shop Now" ngoài trang Client, trình duyệt sẽ chuyển thẳng tới đường dẫn này.</p>
+                {{-- Đường dẫn Link Ref / Affiliate & Mã Coupon --}}
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <div class="sm:col-span-2">
+                        <label for="affiliate_url" class="block text-xs font-semibold uppercase tracking-wider text-gray-700 mb-1.5">
+                            Đường Dẫn Affiliate / Link Ref <span class="text-red-500">*</span>
+                        </label>
+                        <input type="url" name="affiliate_url" id="affiliate_url" required value="{{ old('affiliate_url') }}"
+                               placeholder="https://..."
+                               class="w-full px-4 py-2.5 border border-gray-200 rounded-xl text-sm font-mono text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent">
+                    </div>
+
+                    <div>
+                        <label for="coupon_code" class="block text-xs font-semibold uppercase tracking-wider text-gray-700 mb-1.5">
+                            Mã Giảm Giá (Tùy chọn)
+                        </label>
+                        <input type="text" name="coupon_code" id="coupon_code" value="{{ old('coupon_code') }}"
+                               placeholder="VD: CURSOR50"
+                               class="w-full px-4 py-2.5 border border-gray-200 rounded-xl text-sm font-mono uppercase text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent">
+                    </div>
                 </div>
 
                 {{-- Tùy chỉnh nhãn thẻ (Mặc định giống HakoReview) --}}
@@ -101,11 +111,17 @@
                            class="w-full px-3.5 py-2 border border-gray-200 rounded-xl text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-900">
                 </div>
 
-                <div class="pt-2 border-t border-gray-100">
+                <div class="pt-2 border-t border-gray-100 space-y-2.5">
                     <label class="flex items-center gap-2.5 cursor-pointer select-none">
                         <input type="checkbox" name="is_active" value="1" {{ old('is_active', true) ? 'checked' : '' }}
                                class="h-4 w-4 text-orange-600 focus:ring-orange-500 border-gray-300 rounded">
                         <span class="text-sm font-medium text-gray-800">Hiển thị ngay trên trang Deals</span>
+                    </label>
+
+                    <label class="flex items-center gap-2.5 cursor-pointer select-none">
+                        <input type="checkbox" name="is_featured" value="1" {{ old('is_featured', true) ? 'checked' : '' }}
+                               class="h-4 w-4 text-orange-600 focus:ring-orange-500 border-gray-300 rounded">
+                        <span class="text-sm font-medium text-gray-800">Ghim nổi bật (Trang chủ & Sidebar)</span>
                     </label>
                 </div>
 

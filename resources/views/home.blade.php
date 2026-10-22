@@ -1,11 +1,14 @@
 @extends('layouts.app')
 
-@section('title', 'Home')
+@section('title', 'Home - AI News, Reviews & Exclusive Deals')
+@section('meta_description', 'Independent artificial intelligence news, hands-on AI tool reviews, practical tutorials, and verified software discounts.')
 
 @section('content')
 
-{{-- Hero Section (Taste Skill Style - 100% Full Viewport Height Frame) --}}
-<section class="relative bg-[#FAF9F6] overflow-hidden min-h-screen lg:h-screen flex items-center justify-center pt-20 sm:pt-24 lg:pt-14 pb-8 lg:pb-0">
+{{-- ======================================================== --}}
+{{-- 1. HERO SECTION                                          --}}
+{{-- ======================================================== --}}
+<section class="relative bg-[#FAF9F6] overflow-hidden min-h-screen lg:h-screen flex items-center justify-center pt-20 sm:pt-24 lg:pt-14 pb-8 lg:pb-0 border-b border-gray-200/60">
     <!-- Decorative Ambient Glow Blobs -->
     <div class="absolute top-[-15%] left-[-10%] w-[45vw] h-[45vw] bg-orange-200/35 rounded-full blur-[120px] mix-blend-multiply pointer-events-none"></div>
     <div class="absolute bottom-[-15%] right-[-10%] w-[45vw] h-[45vw] bg-indigo-200/35 rounded-full blur-[120px] mix-blend-multiply pointer-events-none"></div>
@@ -13,11 +16,11 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
         <div class="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12">
             
-            {{-- Left: Typography & CTA (Editorial Luxury Design) --}}
-            <div class="w-full lg:w-1/2 max-w-xl relative z-20 flex-shrink-0">
+            {{-- Left: Typography & CTA --}}
+            <div class="w-full lg:w-1/2 max-w-xl relative z-20 shrink-0">
                 
                 {{-- Interactive Micro Badge --}}
-                <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-white/80 backdrop-blur-md border border-gray-200/90 shadow-[0_2px_10px_-3px_rgba(0,0,0,0.05)] hover:border-orange-300 hover:shadow-[0_4px_16px_-4px_rgba(249,115,22,0.15)] transition-all duration-300 group cursor-pointer mb-6">
+                <a href="{{ route('deals.index') }}" class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-white/80 backdrop-blur-md border border-gray-200/90 shadow-[0_2px_10px_-3px_rgba(0,0,0,0.05)] hover:border-orange-300 hover:shadow-[0_4px_16px_-4px_rgba(249,115,22,0.15)] transition-all duration-300 group cursor-pointer mb-6">
                     <span class="relative flex h-2.5 w-2.5">
                         <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
                         <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-orange-500"></span>
@@ -25,15 +28,15 @@
                     <span class="text-xs font-semibold tracking-wider text-gray-700 uppercase font-sans">AI Trends 2026</span>
                     <span class="text-gray-300 font-light">|</span>
                     <span class="text-xs font-medium text-orange-600 group-hover:translate-x-0.5 transition-transform flex items-center gap-1">
-                        What's New
+                        Explore AI Deals
                         <svg class="w-3 h-3 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/>
                         </svg>
                     </span>
-                </div>
+                </a>
 
                 {{-- Headline with Editorial Serif & Italic Gradient Accent --}}
-                <h1 class="text-4xl sm:text-5xl lg:text-[3.25rem] xl:text-[3.75rem] font-bold text-gray-950 leading-[1.08] mb-5 font-serif tracking-tight">
+                <h1 class="text-4xl sm:text-5xl lg:text-[3.25rem] xl:text-[3.75rem] font-bold text-gray-950 leading-[1.1] mb-5 font-serif tracking-tight">
                     The World of AI,<br/>
                     <span class="italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-gray-900 via-stone-700 to-orange-600">
                         At Your Fingertips.
@@ -42,29 +45,25 @@
 
                 {{-- Refined Editorial Description --}}
                 <p class="text-base sm:text-lg text-gray-600 mb-8 max-w-lg leading-relaxed font-light">
-                    <span class="font-normal text-gray-900">Built for creators and innovators.</span> Discover breakthrough AI tools, in-depth benchmarks, and the latest industry trends to stay ahead of the creative curve.
+                    <span class="font-normal text-gray-900">Built for creators and developers.</span> Discover breakthrough AI tools, independent benchmarks, and verified software discounts to stay ahead.
                 </p>
 
-                {{-- Interactive CTA Buttons with Rich Hover Micro-interactions --}}
+                {{-- Interactive CTA Buttons --}}
                 <div class="flex flex-wrap items-center gap-4">
-                    {{-- Primary Button: Shimmer light sweep + Arrow translate + Soft lift --}}
                     <a href="#latest" 
-                       class="relative group overflow-hidden bg-gray-950 text-white px-8 py-3.5 rounded-full font-medium text-sm transition-all duration-300 shadow-[0_12px_24px_-8px_rgba(0,0,0,0.5)] hover:shadow-[0_20px_35px_-10px_rgba(0,0,0,0.65)] hover:-translate-y-1 active:translate-y-0 active:scale-95 inline-flex items-center gap-2.5 whitespace-nowrap">
-                        <!-- Shimmer light reflection sweep on hover -->
+                       class="relative group overflow-hidden bg-gray-950 text-white px-8 py-3.5 rounded-full font-medium text-sm transition-all duration-300 shadow-[0_12px_24px_-8px_rgba(0,0,0,0.5)] hover:shadow-[0_20px_35px_-10px_rgba(0,0,0,0.65)] hover:-translate-y-0.5 active:translate-y-0 inline-flex items-center gap-2.5 whitespace-nowrap">
                         <span class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out pointer-events-none"></span>
-                        
-                        <span>Explore Now</span>
-                        <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <span>Explore Articles</span>
+                        <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
                         </svg>
                     </a>
 
-                    {{-- Secondary Button: Color Invert Fill + Border Highlight + 45deg Arrow --}}
-                    <a href="{{ route('posts.index', ['type' => 'review']) }}" 
-                       class="group bg-white/90 backdrop-blur-sm text-gray-800 border border-gray-200/90 px-8 py-3.5 rounded-full font-medium text-sm transition-all duration-300 shadow-sm hover:bg-gray-900 hover:text-white hover:border-gray-900 hover:shadow-[0_12px_25px_-10px_rgba(0,0,0,0.25)] hover:-translate-y-1 active:translate-y-0 active:scale-95 inline-flex items-center gap-2 whitespace-nowrap">
-                        <span>Read Reviews</span>
-                        <svg class="w-4 h-4 transition-transform duration-300 text-gray-400 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                    <a href="{{ route('deals.index') }}" 
+                       class="group bg-white/90 backdrop-blur-sm text-gray-800 border border-gray-200/90 px-8 py-3.5 rounded-full font-medium text-sm transition-all duration-300 shadow-xs hover:bg-gray-900 hover:text-white hover:border-gray-900 hover:-translate-y-0.5 active:translate-y-0 inline-flex items-center gap-2 whitespace-nowrap">
+                        <span>Browse AI Deals</span>
+                        <svg class="w-4 h-4 transition-transform duration-300 text-gray-400 group-hover:text-white group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M9 5l7 7-7 7"/>
                         </svg>
                     </a>
                 </div>
@@ -77,21 +76,20 @@
                             <div class="w-7 h-7 rounded-full bg-gradient-to-tr from-indigo-600 to-purple-500 border-2 border-white flex items-center justify-center text-[9px] font-bold text-white shadow-xs">LLM</div>
                             <div class="w-7 h-7 rounded-full bg-gradient-to-tr from-emerald-600 to-teal-400 border-2 border-white flex items-center justify-center text-[9px] font-bold text-white shadow-xs">PRO</div>
                         </div>
-                        <span class="text-xs font-medium text-gray-700"><strong>500+</strong> AI tools & articles</span>
+                        <span class="text-xs font-medium text-gray-700"><strong>Independent</strong> AI Reviews & Deals</span>
                     </div>
                     <div class="hidden sm:block h-3.5 w-px bg-gray-300"></div>
                     <div class="flex items-center gap-1.5 text-xs text-gray-500">
                         <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                        <span>Unbiased reviews & 24/7 updates</span>
+                        <span>Hands-on benchmarks & verified discounts</span>
                     </div>
                 </div>
 
             </div>
 
-            {{-- Right: Infinite Curved Path Image Carousel (Full 100vh Stage) --}}
+            {{-- Right: Infinite Curved Path Image Carousel --}}
             <div class="w-full lg:w-1/2 relative h-[520px] lg:h-[580px] overflow-hidden pointer-events-none select-none" id="curved-carousel">
                 @php
-                    // 4 thẻ giao diện chọn lọc chuẩn Taste Skill (0ms latency, chạy cục bộ)
                     $localCards = [
                         asset('images/carousel/card-1.svg'),
                         asset('images/carousel/card-2.svg'),
@@ -100,12 +98,11 @@
                     ];
                 @endphp
 
-                {{-- STRICT CONSTRAINTS: ONLY pure images (<img>), NO text, NO links, NO clickable cards --}}
                 @foreach($localCards as $index => $imgUrl)
                     <div class="carousel-card-item absolute top-0 left-0 w-[260px] h-[170px] sm:w-[280px] sm:h-[185px] rounded-2xl md:rounded-3xl overflow-hidden shadow-[0_20px_50px_-10px_rgba(0,0,0,0.25)] border-4 border-white pointer-events-none select-none bg-[#111827]" 
                          style="will-change: transform, opacity; opacity: 0; transform-origin: center center;">
                         <img src="{{ $imgUrl }}" 
-                             alt="Taste Skill Visual {{ $index + 1 }}" 
+                             alt="AI Hub Visual {{ $index + 1 }}" 
                              class="w-full h-full object-cover pointer-events-none select-none block"
                              loading="eager">
                     </div>
@@ -122,7 +119,6 @@
                     const items = Array.from(container.querySelectorAll('.carousel-card-item'));
                     if (!items.length) return;
 
-                    // 4 thẻ phân bổ đều khoảng cách: 0.0, 0.25, 0.5, 0.75
                     let progressList = items.map((_, i) => i / items.length);
                     const speed = 0.0016; 
                     let lastTimestamp = performance.now();
@@ -137,11 +133,9 @@
                         const cardW = items[0].offsetWidth || 280;
                         const cardH = items[0].offsetHeight || 185;
 
-                        // Điểm xuất phát (ở góc trên, an toàn bên trong cột phải)
                         const startX = w * 0.18;
                         const startY = -cardH * 0.50;
                         
-                        // Quỹ đạo cung tròn vát ngang sang bên phải
                         const arcWidth = w * 1.15; 
                         const arcHeight = h * 0.88;
 
@@ -153,13 +147,11 @@
                         for (let i = 0; i < items.length; i++) {
                             const item = items[i];
                             const p = progressList[i];
-                            const theta = p * (Math.PI / 2); // 0 đến 90 độ (1/4 cung tròn)
+                            const theta = p * (Math.PI / 2);
 
-                            // 1. Quỹ đạo: Đi từ trên xuống rồi bẻ ngang sang phải
                             const x = startX + arcWidth * (1 - Math.cos(theta));
                             const y = startY + arcHeight * Math.sin(theta);
 
-                            // 2. Dynamic Scaling: Đến tâm (p <= 0.48) đạt 1.18x, qua đỉnh thu nhỏ nhanh xuống 0.35x
                             let scale;
                             if (p <= 0.48) {
                                 scale = 0.45 + (0.73 * Math.sin(p * Math.PI));
@@ -168,7 +160,6 @@
                                 scale = 1.18 - (0.83 * Math.pow(exitT, 0.75));
                             }
 
-                            // 3. Dynamic Opacity: Rõ 100% tại tâm, mờ nhanh khi thoát
                             let opacity;
                             if (p < 0.20) {
                                 opacity = p / 0.20;
@@ -179,7 +170,6 @@
                                 opacity = Math.max(0, 1.0 - Math.pow(Math.min(fadeT, 1.0), 0.85));
                             }
 
-                            // 4. Góc nghiêng tự nhiên
                             const rotate = -8 + (24 * p);
                             const zIndex = Math.round((1 - Math.abs(p - 0.48)) * 100);
 
@@ -210,19 +200,177 @@
     </div>
 </section>
 
-{{-- Container for the rest of the page --}}
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20" id="latest">
-    {{-- Categories --}}
+{{-- ======================================================== --}}
+{{-- 2. EDITOR'S PICKS / FEATURED STORIES (MAGAZINE GRID)     --}}
+{{-- ======================================================== --}}
+@if($featuredPosts->count() > 0)
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-12">
+    <div class="flex flex-wrap items-end justify-between mb-8 border-b border-gray-200 pb-4">
+        <div>
+            <h2 class="text-2xl sm:text-3xl font-bold text-gray-950 font-serif tracking-tight">Editor's Picks</h2>
+            <p class="text-sm text-gray-500 mt-1">In-depth benchmarks, flagship model comparisons, and essential guides.</p>
+        </div>
+        <a href="{{ route('posts.index', ['type' => 'review']) }}" class="text-sm font-semibold text-gray-700 hover:text-orange-600 flex items-center gap-1 transition">
+            <span>All Reviews</span>
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </a>
+    </div>
+
+    @php
+        $mainFeatured = $featuredPosts->first();
+        $sideFeatured = $featuredPosts->slice(1, 3);
+    @endphp
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+        {{-- Left Spotlight Card (7 cols) --}}
+        @if($mainFeatured)
+        <article class="lg:col-span-7 bg-white rounded-2xl border border-gray-200/90 shadow-xs hover:shadow-md transition overflow-hidden flex flex-col justify-between group">
+            <div>
+                <a href="{{ route('posts.show', $mainFeatured->slug) }}" class="block aspect-[16/9] bg-slate-900 overflow-hidden relative">
+                    @if($mainFeatured->featured_image)
+                        <img src="{{ Storage::url($mainFeatured->featured_image) }}"
+                             alt="{{ $mainFeatured->title }}"
+                             class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    @else
+                        <div class="w-full h-full bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-950 flex flex-col items-center justify-center p-6 text-center">
+                            <span class="text-xs font-bold tracking-[0.25em] uppercase text-orange-400 mb-2">FEATURED STORY</span>
+                            <span class="text-base font-semibold text-white/90 line-clamp-2 max-w-md">{{ $mainFeatured->category->name ?? 'AI Analysis' }}</span>
+                        </div>
+                    @endif
+                </a>
+
+                <div class="p-6 sm:p-8">
+                    <div class="flex items-center gap-2.5 mb-3">
+                        @if($mainFeatured->category)
+                            <a href="{{ route('categories.show', $mainFeatured->category->slug) }}"
+                               class="text-xs font-semibold text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full hover:bg-indigo-100 transition">
+                                {{ $mainFeatured->category->name }}
+                            </a>
+                        @endif
+                        <span class="text-xs text-gray-400 uppercase font-medium tracking-wider">
+                            {{ ucfirst($mainFeatured->type ?? 'article') }}
+                        </span>
+                    </div>
+
+                    <h3 class="text-xl sm:text-2xl font-bold text-gray-950 group-hover:text-orange-600 transition leading-snug mb-3">
+                        <a href="{{ route('posts.show', $mainFeatured->slug) }}">
+                            {{ $mainFeatured->title }}
+                        </a>
+                    </h3>
+
+                    <p class="text-sm sm:text-base text-gray-600 leading-relaxed line-clamp-3">
+                        {{ $mainFeatured->excerpt ?? Str::limit(strip_tags($mainFeatured->content), 160) }}
+                    </p>
+                </div>
+            </div>
+
+            <div class="px-6 sm:px-8 pb-6 pt-4 border-t border-gray-100 flex items-center justify-between text-xs text-gray-500">
+                <div class="flex items-center gap-2">
+                    <span class="font-semibold text-gray-800">{{ $mainFeatured->author->name ?? 'Editorial Team' }}</span>
+                    <span>•</span>
+                    <span>{{ $mainFeatured->published_at?->format('M d, Y') }}</span>
+                </div>
+                <span class="font-semibold text-gray-900 group-hover:text-orange-600 transition">Read story →</span>
+            </div>
+        </article>
+        @endif
+
+        {{-- Right Side Stories Stack (5 cols) --}}
+        <div class="lg:col-span-5 flex flex-col justify-between gap-4">
+            @foreach($sideFeatured as $sidePost)
+                <article class="bg-white rounded-2xl border border-gray-200/90 p-4 sm:p-5 shadow-xs hover:shadow-md hover:border-gray-300 transition flex items-start gap-4 group flex-1">
+                    <a href="{{ route('posts.show', $sidePost->slug) }}" class="w-28 h-24 sm:w-32 sm:h-24 rounded-xl overflow-hidden bg-slate-900 shrink-0 block">
+                        @if($sidePost->featured_image)
+                            <img src="{{ Storage::url($sidePost->featured_image) }}"
+                                 alt="{{ $sidePost->title }}"
+                                 class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                        @else
+                            <div class="w-full h-full bg-gradient-to-br from-slate-900 to-indigo-950 flex flex-col items-center justify-center p-2 text-center">
+                                <span class="text-[9px] font-bold tracking-widest uppercase text-orange-400">AI HUB</span>
+                                <span class="text-[10px] font-medium text-white/80 mt-0.5 line-clamp-1">{{ $sidePost->category->name ?? 'News' }}</span>
+                            </div>
+                        @endif
+                    </a>
+
+                    <div class="min-w-0 flex-1 flex flex-col justify-between h-full">
+                        <div>
+                            <div class="flex items-center gap-2 mb-1.5">
+                                @if($sidePost->category)
+                                    <span class="text-[11px] font-semibold text-indigo-600">{{ $sidePost->category->name }}</span>
+                                    <span class="text-gray-300">•</span>
+                                @endif
+                                <span class="text-[11px] text-gray-400">{{ $sidePost->published_at?->format('M d, Y') }}</span>
+                            </div>
+
+                            <h3 class="text-sm sm:text-base font-bold text-gray-900 group-hover:text-orange-600 transition line-clamp-2 leading-snug">
+                                <a href="{{ route('posts.show', $sidePost->slug) }}">
+                                    {{ $sidePost->title }}
+                                </a>
+                            </h3>
+                        </div>
+
+                        <div class="mt-2 flex items-center justify-between text-[11px] text-gray-400">
+                            <span>{{ ucfirst($sidePost->type ?? 'Article') }}</span>
+                            <span>{{ number_format($sidePost->views_count) }} views</span>
+                        </div>
+                    </div>
+                </article>
+            @endforeach
+        </div>
+    </div>
+</section>
+@endif
+
+{{-- ======================================================== --}}
+{{-- 3. EXCLUSIVE AI DEALS & PROMO CODES SHOWCASE             --}}
+{{-- ======================================================== --}}
+@if($featuredDeals->count() > 0)
+<section class="bg-white border-y border-gray-200/80 py-16 my-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
+            <div>
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-50 border border-rose-200/70 text-[#E11D48] text-xs font-bold uppercase tracking-wider mb-3">
+                    <span>Verified Partner Offers</span>
+                </div>
+                <h2 class="text-2xl sm:text-3xl font-bold text-gray-950 font-serif tracking-tight">
+                    Exclusive AI Tool Deals & Discounts
+                </h2>
+                <p class="text-sm sm:text-base text-gray-500 mt-1">
+                    Save up to 70% on top-rated AI coding assistants, writing workspaces, and generative media platforms.
+                </p>
+            </div>
+
+            <a href="{{ route('deals.index') }}"
+               class="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full bg-gray-950 hover:bg-gray-800 text-white text-xs sm:text-sm font-semibold transition shrink-0 self-start sm:self-auto">
+                <span>View All Deals</span>
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </a>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            @foreach($featuredDeals as $deal)
+                @include('deals._card', ['deal' => $deal])
+            @endforeach
+        </div>
+    </div>
+</section>
+@endif
+
+{{-- ======================================================== --}}
+{{-- 4. LATEST ARTICLES (9 POSTS, NO PAGINATION)              --}}
+{{-- ======================================================== --}}
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12" id="latest">
+    {{-- Categories Filter Bar --}}
     @if($categories->count() > 0)
-    <section class="mb-14">
-        <div class="flex flex-wrap items-center gap-3">
-            <span class="text-sm font-medium text-gray-400 mr-2 uppercase tracking-wider">Filter by:</span>
-            <a href="{{ route('posts.index') }}" class="px-5 py-2.5 bg-gray-900 text-white rounded-full text-sm font-medium hover:bg-gray-800 transition shadow-sm">
-                All
+    <section class="mb-12">
+        <div class="flex flex-wrap items-center gap-2.5">
+            <span class="text-xs font-semibold text-gray-400 mr-2 uppercase tracking-wider">Browse by Topic:</span>
+            <a href="{{ route('posts.index') }}" class="px-4 py-2 bg-gray-900 text-white rounded-full text-xs sm:text-sm font-medium hover:bg-gray-800 transition shadow-2xs">
+                All Topics
             </a>
             @foreach($categories as $category)
                 <a href="{{ route('categories.show', $category->slug) }}"
-                   class="px-5 py-2.5 bg-white text-gray-600 rounded-full text-sm font-medium border border-gray-200 hover:border-gray-900 hover:text-gray-900 transition shadow-sm hover:shadow">
+                   class="px-4 py-2 bg-white text-gray-600 rounded-full text-xs sm:text-sm font-medium border border-gray-200 hover:border-gray-900 hover:text-gray-900 transition shadow-2xs">
                     {{ $category->name }} <span class="ml-1 text-gray-400">({{ $category->posts_count }})</span>
                 </a>
             @endforeach
@@ -230,12 +378,15 @@
     </section>
     @endif
 
-    {{-- Latest Articles --}}
+    {{-- Latest 9 Articles Grid --}}
     <section>
-        <div class="flex flex-wrap items-end justify-between mb-10 border-b border-gray-200 pb-4">
-            <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 font-serif">Latest Articles</h2>
-            <a href="{{ route('posts.index') }}" class="text-indigo-600 font-medium hover:text-indigo-800 flex items-center group">
-                View all 
+        <div class="flex flex-wrap items-end justify-between mb-8 border-b border-gray-200 pb-4">
+            <div>
+                <h2 class="text-2xl sm:text-3xl font-bold text-gray-950 font-serif tracking-tight">Latest Articles</h2>
+                <p class="text-sm text-gray-500 mt-1">Fresh news, tutorials, and practical workflows from our editorial desk.</p>
+            </div>
+            <a href="{{ route('posts.index') }}" class="text-sm font-semibold text-indigo-600 hover:text-indigo-800 flex items-center group">
+                <span>View all articles</span>
                 <svg class="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
             </a>
         </div>
@@ -248,6 +399,63 @@
                     <p class="text-lg">No articles published yet.</p>
                 </div>
             @endforelse
+        </div>
+
+        <div class="mt-10 text-center">
+            <a href="{{ route('posts.index') }}"
+               class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white border border-gray-300 hover:border-gray-900 hover:bg-gray-900 hover:text-white text-gray-800 text-sm font-semibold transition shadow-2xs">
+                <span>Explore Full Article Archive</span>
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+            </a>
+        </div>
+    </section>
+
+    {{-- ======================================================== --}}
+    {{-- 5. WEEKLY AI BRIEFING & DEALS NEWSLETTER BANNER          --}}
+    {{-- ======================================================== --}}
+    <section class="mt-20">
+        <div class="bg-gray-950 rounded-3xl p-8 sm:p-12 lg:p-14 border border-gray-800 shadow-lg relative overflow-hidden">
+            <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <div class="lg:col-span-7">
+                    <span class="inline-block text-xs font-bold uppercase tracking-widest text-orange-400 mb-2">
+                        Weekly AI Briefing
+                    </span>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-tight mb-3">
+                        Get Verified AI Tool Deals & Benchmarks in Your Inbox
+                    </h2>
+                    <p class="text-gray-400 text-sm sm:text-base leading-relaxed max-w-xl">
+                        Join developers, founders, and creators receiving our curated weekly digest of newly tested AI software, prompt engineering guides, and exclusive partner promo codes.
+                    </p>
+                </div>
+
+                <div class="lg:col-span-5">
+                    @if(session('success'))
+                        <div class="bg-emerald-950/90 border border-emerald-700 text-emerald-200 px-4 py-3.5 rounded-2xl text-sm mb-4">
+                            {{ session('success') }}
+                        </div>
+                    @endif
+
+                    <form action="{{ route('newsletter.subscribe') }}" method="POST" class="flex flex-col sm:flex-row gap-3">
+                        @csrf
+                        <div class="flex-1">
+                            <label for="newsletter-email" class="sr-only">Email address</label>
+                            <input type="email"
+                                   id="newsletter-email"
+                                   name="email"
+                                   required
+                                   placeholder="Enter your work email..."
+                                   class="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/15 text-white placeholder-gray-400 text-sm focus:outline-none focus:border-orange-400 focus:bg-white/15 transition">
+                        </div>
+                        <button type="submit"
+                                class="px-6 py-3 rounded-xl bg-orange-600 hover:bg-orange-500 text-white font-semibold text-sm transition cursor-pointer whitespace-nowrap shadow-xs">
+                            Subscribe Free
+                        </button>
+                    </form>
+                    <p class="text-[11px] text-gray-500 mt-3">
+                        No spam. Unsubscribe anytime. Read our <a href="{{ route('pages.show', 'privacy-policy') }}" class="text-gray-400 underline hover:text-white">Privacy Policy</a>.
+                    </p>
+                </div>
+            </div>
         </div>
     </section>
 </div>

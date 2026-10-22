@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Deal;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
@@ -69,6 +70,22 @@ class PostController extends Controller
             $relatedPosts = $relatedPosts->concat($morePosts);
         }
 
-        return view('posts.show', compact('post', 'relatedPosts'));
+        // Top Deals cho Sidebar & In-article Callout
+        $sidebarDeals = Deal::active()
+            ->orderByDesc('is_featured')
+            ->orderBy('order')
+            ->latest()
+            ->take(3)
+            ->get();
+
+        // Bài viết đọc nhiều nhất cho Sidebar
+        $trendingPosts = Post::published()
+            ->where('id', '!=', $post->id)
+            ->with('category')
+            ->orderByDesc('views_count')
+            ->take(4)
+            ->get();
+
+        return view('posts.show', compact('post', 'relatedPosts', 'sidebarDeals', 'trendingPosts'));
     }
 }
