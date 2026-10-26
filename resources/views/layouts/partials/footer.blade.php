@@ -9,14 +9,34 @@
                     <div class="w-7 h-7 rounded-xl bg-orange-600 flex items-center justify-center text-white font-bold text-xs">
                         AI
                     </div>
-                    <span class="text-lg font-bold text-white tracking-tight">AI News Hub</span>
+                    <span class="text-lg font-bold text-white tracking-tight">AI Hub Insider</span>
                 </a>
                 <p class="text-sm text-gray-400 leading-relaxed max-w-sm">
                     Independent artificial intelligence news, hands-on software benchmarks, practical tutorials, and verified promo codes for developers and creators worldwide.
                 </p>
-                <div class="pt-1 text-xs text-gray-400 space-y-1">
-                    <p><span class="text-gray-500">Editorial Desk:</span> <a href="mailto:contact@ainewshub.com" class="text-gray-300 hover:text-white transition">contact@ainewshub.com</a></p>
-                    <p><span class="text-gray-500">Partnerships:</span> <a href="mailto:partners@ainewshub.com" class="text-gray-300 hover:text-white transition">partners@ainewshub.com</a></p>
+                <div class="pt-2 text-xs text-gray-400 space-y-2 border-t border-gray-800/80 max-w-sm">
+                    <div class="flex items-start gap-2.5 text-gray-300">
+                        <svg class="w-4 h-4 text-orange-500 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                        </svg>
+                        <div class="leading-relaxed">
+                            <span class="text-gray-500 uppercase tracking-wider text-[10px] font-bold block">U.S. Headquarters</span>
+                            <span>1200 17th St NW, Suite 500, Washington, D.C. 20036, United States</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2.5 pt-0.5">
+                        <svg class="w-4 h-4 text-gray-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                        </svg>
+                        <span><span class="text-gray-500">Editorial Desk:</span> <a href="mailto:contact@aihubinsider.com" class="text-gray-300 hover:text-white transition">contact@aihubinsider.com</a></span>
+                    </div>
+                    <div class="flex items-center gap-2.5">
+                        <svg class="w-4 h-4 text-gray-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                        </svg>
+                        <span><span class="text-gray-500">Partnerships:</span> <a href="mailto:partners@aihubinsider.com" class="text-gray-300 hover:text-white transition">partners@aihubinsider.com</a></span>
+                    </div>
                 </div>
             </div>
 
@@ -68,10 +88,10 @@
         <div class="pt-8 flex flex-col gap-4 text-xs text-gray-500 leading-relaxed">
             <p>
                 <strong class="text-gray-400">FTC Affiliate Disclosure:</strong>
-                AI News Hub is reader-supported. When you buy software or claim discounts through links on our site, we may earn an affiliate commission at no additional cost to you. Our editorial reviews and benchmark ratings remain 100% independent.
+                AI Hub Insider is reader-supported. When you buy software or claim discounts through links on our site, we may earn an affiliate commission at no additional cost to you. Our editorial reviews and benchmark ratings remain 100% independent.
             </p>
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pt-2 border-t border-gray-900 text-gray-500">
-                <p>&copy; {{ date('Y') }} AI News Hub. All rights reserved.</p>
+                <p>&copy; {{ date('Y') }} AI Hub Insider LLC &bull; Washington, D.C., USA. All rights reserved.</p>
                 <div class="flex items-center gap-4">
                     <a href="{{ route('pages.show', 'privacy-policy') }}" class="hover:text-gray-300 transition">Privacy</a>
                     <a href="{{ route('pages.show', 'terms-of-service') }}" class="hover:text-gray-300 transition">Terms</a>

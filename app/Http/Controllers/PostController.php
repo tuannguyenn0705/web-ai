@@ -42,9 +42,7 @@ class PostController extends Controller
     {
         $post = Post::where('slug', $slug)
             ->published()
-            ->with(['category', 'author', 'tags', 'comments' => function ($query) {
-                $query->approved()->whereNull('parent_id')->with('replies')->latest();
-            }])
+            ->with(['category', 'author', 'tags'])
             ->firstOrFail();
 
         // Tăng lượt xem

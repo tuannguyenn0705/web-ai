@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
-use App\Models\Comment;
 use App\Models\Deal;
 use App\Models\Post;
 use App\Models\User;
@@ -21,9 +20,8 @@ class DashboardController extends Controller
             'published_posts' => Post::where('status', 'published')->count(),
             'draft_posts' => Post::where('status', 'draft')->count(),
             'total_deals' => Deal::count(),
+            'total_deal_clicks' => (int) Deal::sum('clicks_count'),
             'total_categories' => Category::count(),
-            'total_comments' => Comment::count(),
-            'pending_comments' => Comment::where('is_approved', false)->count(),
             'total_users' => User::count(),
         ];
 
@@ -32,11 +30,11 @@ class DashboardController extends Controller
             ->take(5)
             ->get();
 
-        $recentComments = Comment::with(['post', 'user'])
-            ->latest()
+        $topDeals = Deal::orderByDesc('clicks_count')
+            ->orderBy('order')
             ->take(5)
             ->get();
 
-        return view('admin.dashboard', compact('stats', 'recentPosts', 'recentComments'));
+        return view('admin.dashboard', compact('stats', 'recentPosts', 'topDeals'));
     }
 }

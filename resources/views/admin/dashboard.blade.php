@@ -38,13 +38,13 @@
             </p>
         </a>
 
-        <div class="bg-white rounded-2xl border border-gray-200/90 shadow-xs p-5">
-            <p class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Bình Luận Chờ</p>
-            <p class="text-3xl font-bold text-gray-900 mt-2 font-sans">{{ $stats['pending_comments'] }}</p>
-            <p class="mt-3 text-xs text-gray-400">
-                Phản hồi từ độc giả
+        <a href="{{ route('admin.deals.index') }}" class="bg-white rounded-2xl border border-gray-200/90 shadow-xs p-5 hover:border-gray-300 transition group block">
+            <p class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Tổng Lượt Click Deals</p>
+            <p class="text-3xl font-bold text-rose-600 mt-2 font-sans">{{ number_format($stats['total_deal_clicks'] ?? 0) }}</p>
+            <p class="mt-3 text-xs text-rose-600 font-medium">
+                {{ $stats['total_deals'] ?? 0 }} Deals đang quản lý →
             </p>
-        </div>
+        </a>
     </div>
 
     {{-- 4 Phân loại nhanh (Dạng khối tối giản, không emoji) --}}
@@ -67,7 +67,7 @@
         </a>
     </div>
 
-    {{-- Hai cột: Bài viết gần đây & Bình luận gần đây --}}
+    {{-- Hai cột: Bài viết gần đây & Top Deals Affiliate --}}
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {{-- Recent Posts --}}
         <div class="bg-white rounded-2xl border border-gray-200/90 shadow-xs p-6">
@@ -96,25 +96,29 @@
             </div>
         </div>
 
-        {{-- Recent Comments --}}
+        {{-- Top Deals Affiliate --}}
         <div class="bg-white rounded-2xl border border-gray-200/90 shadow-xs p-6">
             <div class="flex justify-between items-center mb-4 pb-2 border-b border-gray-100">
-                <h2 class="text-xs font-bold text-gray-700 uppercase tracking-wider">Bình luận gần đây</h2>
+                <h2 class="text-xs font-bold text-gray-700 uppercase tracking-wider">Top Deals Affiliate</h2>
+                <a href="{{ route('admin.deals.index') }}" class="text-xs font-semibold text-orange-600 hover:text-orange-700">Quản lý Deals</a>
             </div>
             <div class="space-y-3">
-                @forelse($recentComments as $comment)
-                    <div class="py-2.5 border-b border-gray-100 last:border-0">
-                        <p class="text-xs text-gray-800 leading-relaxed">{{ Str::limit($comment->content, 80) }}</p>
-                        <p class="text-xs text-gray-400 mt-1">
-                            {{ $comment->user->name ?? $comment->guest_name ?? 'Khách' }}
-                            · {{ $comment->created_at->diffForHumans() }}
-                            @if(!$comment->is_approved)
-                                <span class="text-red-500 font-semibold">· Chờ duyệt</span>
-                            @endif
-                        </p>
+                @forelse($topDeals as $deal)
+                    <div class="flex items-center justify-between py-2.5 border-b border-gray-100 last:border-0">
+                        <div class="min-w-0 pr-3">
+                            <a href="{{ route('admin.deals.edit', $deal) }}" class="text-sm font-semibold text-gray-900 hover:text-orange-600 transition truncate block">
+                                {{ $deal->title }}
+                            </a>
+                            <p class="text-xs text-gray-400 mt-0.5 truncate">
+                                {{ $deal->affiliate_url }}
+                            </p>
+                        </div>
+                        <span class="px-2.5 py-0.5 text-xs font-mono font-bold rounded-full whitespace-nowrap bg-rose-50 text-rose-700">
+                            {{ number_format($deal->clicks_count ?? 0) }} clicks
+                        </span>
                     </div>
                 @empty
-                    <p class="text-gray-400 text-sm py-4 text-center">Chưa có bình luận nào.</p>
+                    <p class="text-gray-400 text-sm py-4 text-center">Chưa có Deal nào.</p>
                 @endforelse
             </div>
         </div>

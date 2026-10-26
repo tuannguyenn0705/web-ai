@@ -31,14 +31,23 @@
                     @endforeach
                 </nav>
 
-                <div class="mt-6 pt-5 border-t border-gray-100 px-2">
-                    <p class="text-xs font-semibold text-gray-800 mb-1">Editorial & Partnerships</p>
-                    <p class="text-xs text-gray-500 leading-relaxed mb-2">
-                        Questions about our reviews or partner deals?
-                    </p>
-                    <a href="mailto:contact@ainewshub.com" class="text-xs font-semibold text-orange-600 hover:underline">
-                        contact@ainewshub.com
-                    </a>
+                <div class="mt-6 pt-5 border-t border-gray-100 px-2 space-y-3">
+                    <div>
+                        <p class="text-xs font-semibold text-gray-800 mb-1">Editorial & Partnerships</p>
+                        <p class="text-xs text-gray-500 leading-relaxed mb-1.5">
+                            Questions about our reviews or partner deals?
+                        </p>
+                        <a href="mailto:contact@aihubinsider.com" class="text-xs font-semibold text-orange-600 hover:underline">
+                            contact@aihubinsider.com
+                        </a>
+                    </div>
+                    <div class="pt-3 border-t border-gray-100 text-xs text-gray-500">
+                        <span class="text-[10px] uppercase tracking-wider font-bold text-gray-400 block mb-0.5">U.S. Headquarters</span>
+                        <p class="text-gray-700 font-medium leading-relaxed">
+                            1200 17th St NW, Suite 500<br>
+                            Washington, D.C. 20036, USA
+                        </p>
+                    </div>
                 </div>
             </div>
         </aside>

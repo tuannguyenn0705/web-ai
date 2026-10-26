@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'Quản Trị') - {{ config('app.name', 'AI News Hub') }}</title>
+    <title>@yield('title', 'Quản Trị') - {{ config('app.name', 'AI Hub Insider') }}</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Google Fonts -->

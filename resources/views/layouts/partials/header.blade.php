@@ -17,7 +17,7 @@
             
             <div class="flex items-center gap-1.5">
                 <span class="text-sm font-bold text-gray-900 tracking-tight font-sans">
-                    AI Hub
+                    AI Hub Insider
                 </span>
                 <span class="text-[10px] font-semibold text-orange-600 bg-orange-50 border border-orange-200/60 px-1.5 py-0.5 rounded-md uppercase font-mono">
                     2026

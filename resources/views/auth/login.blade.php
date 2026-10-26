@@ -10,7 +10,7 @@
                 🤖
             </div>
             <h2 class="text-2xl font-bold text-gray-900 tracking-tight font-sans">Quản trị hệ thống</h2>
-            <p class="mt-1.5 text-xs text-gray-500">Đăng nhập tài khoản quản trị AI News Hub</p>
+            <p class="mt-1.5 text-xs text-gray-500">Đăng nhập tài khoản quản trị AI Hub Insider</p>
         </div>
 
         <form class="space-y-5" action="{{ route('login') }}" method="POST">

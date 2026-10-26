@@ -294,7 +294,7 @@
     {{-- BLOCK 3: RELATED ARTICLES (3-COLUMN GRID)                --}}
     {{-- ======================================================== --}}
     @if($relatedPosts->count() > 0)
-        <section class="border-t border-gray-200/90 pt-10 sm:pt-14 mb-14">
+        <section class="border-t border-gray-200/90 pt-10 sm:pt-14">
             <div class="flex items-center justify-between mb-8">
                 <div>
                     <span class="text-xs font-bold uppercase tracking-wider text-orange-600 block mb-1">More in this category</span>
@@ -314,74 +314,6 @@
             </div>
         </section>
     @endif
-
-    {{-- ======================================================== --}}
-    {{-- BLOCK 4: ARTICLE COMMENTS                                --}}
-    {{-- ======================================================== --}}
-    <section class="border-t border-gray-200/90 pt-10 sm:pt-14 max-w-4xl" id="comments">
-        <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-950 tracking-tight font-sans mb-8">
-            Comments ({{ $post->comments->count() }})
-        </h2>
-
-        {{-- Comment Submission Form --}}
-        <div class="bg-white rounded-2xl border border-gray-200/90 p-6 sm:p-8 mb-10 shadow-xs">
-            <h3 class="text-base font-bold text-gray-900 mb-4">Leave your thoughts on this article</h3>
-            
-            <form action="{{ route('comments.store', $post->id) }}" method="POST" class="space-y-4">
-                @csrf
-
-                @guest
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-xs font-semibold uppercase text-gray-600 mb-1.5">Your Name *</label>
-                            <input type="text" name="guest_name" required placeholder="John Doe"
-                                   class="w-full px-4 py-2.5 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-gray-900">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-semibold uppercase text-gray-600 mb-1.5">Email Address *</label>
-                            <input type="email" name="guest_email" required placeholder="you@example.com"
-                                   class="w-full px-4 py-2.5 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-gray-900">
-                        </div>
-                    </div>
-                @endguest
-
-                <div>
-                    <label class="block text-xs font-semibold uppercase text-gray-600 mb-1.5">Your Comment *</label>
-                    <textarea name="content" rows="4" required placeholder="Share your perspective or ask a question..."
-                              class="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-gray-900 leading-relaxed"></textarea>
-                </div>
-
-                <button type="submit"
-                        class="px-6 py-2.5 bg-gray-950 hover:bg-gray-800 text-white font-semibold rounded-xl text-sm transition shadow-xs cursor-pointer">
-                    Post Comment
-                </button>
-            </form>
-        </div>
-
-        {{-- Comments List --}}
-        <div class="space-y-4">
-            @forelse($post->comments as $comment)
-                <div class="bg-white rounded-2xl border border-gray-200/80 p-5 shadow-xs">
-                    <div class="flex items-center gap-3 mb-3">
-                        <div class="w-9 h-9 rounded-full bg-orange-100 text-orange-700 flex items-center justify-center font-bold text-sm">
-                            {{ strtoupper(substr($comment->user->name ?? $comment->guest_name ?? 'A', 0, 1)) }}
-                        </div>
-                        <div>
-                            <p class="font-bold text-gray-900 text-sm">
-                                {{ $comment->user->name ?? $comment->guest_name ?? 'Anonymous Reader' }}
-                            </p>
-                            <p class="text-xs text-gray-400">{{ $comment->created_at->diffForHumans() }}</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-700 text-sm leading-relaxed">{{ $comment->content }}</p>
-                </div>
-            @empty
-                <div class="text-center py-10 bg-white rounded-2xl border border-dashed border-gray-200 text-gray-400 text-sm">
-                    No comments yet for this article. Be the first to share your thoughts!
-                </div>
-            @endforelse
-        </div>
-    </section>
 </div>
 
 @push('scripts')

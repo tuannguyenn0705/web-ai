@@ -13,7 +13,7 @@ use Illuminate\Support\Str;
 class DatabaseSeeder extends Seeder
 {
     /**
-     * Seed dữ liệu mẫu cho AI News Hub
+     * Seed dữ liệu mẫu cho AI Hub Insider
      */
     public function run(): void
     {
@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder
         );
 
         User::firstOrCreate(
-            ['email' => 'admin@ainewshub.com'],
+            ['email' => 'admin@aihubinsider.com'],
             [
                 'name' => 'Admin',
                 'password' => bcrypt('password'),
@@ -134,9 +134,9 @@ class DatabaseSeeder extends Seeder
         $this->call(PageSeeder::class);
 
         // === Create Settings ===
-        Setting::set('site_name', 'AI News Hub');
+        Setting::set('site_name', 'AI Hub Insider');
         Setting::set('site_description', 'Latest AI news, tool reviews, tutorials, and exclusive AI deals');
         Setting::set('posts_per_page', '15');
-        Setting::set('contact_email', 'contact@ainewshub.com');
+        Setting::set('contact_email', 'contact@aihubinsider.com');
     }
 }

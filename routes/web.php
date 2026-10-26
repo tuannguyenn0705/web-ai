@@ -6,7 +6,6 @@ use App\Http\Controllers\Admin\DealController as AdminDealController;
 use App\Http\Controllers\Admin\PostController as AdminPostController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DealController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NewsletterController;
@@ -18,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
-| Web Routes - AI News Hub
+| Web Routes - AI Hub Insider
 |--------------------------------------------------------------------------
 */
 
@@ -47,9 +46,6 @@ Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap')
 
 // Newsletter Subscription
 Route::post('/newsletter/subscribe', [NewsletterController::class, 'subscribe'])->name('newsletter.subscribe');
-
-// Comments
-Route::post('/posts/{post}/comments', [CommentController::class, 'store'])->name('comments.store');
 
 // === XÁC THỰC (AUTH) ===
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
