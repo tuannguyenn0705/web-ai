@@ -1,12 +1,12 @@
 {{-- Post Card Component --}}
-<article class="bg-white rounded-2xl border border-gray-200/90 shadow-xs overflow-hidden hover:shadow-md transition duration-300 group flex flex-col">
+<article class="relative bg-white rounded-2xl border border-gray-200/90 shadow-xs overflow-hidden hover:shadow-xl hover:border-gray-300 hover:scale-[1.06] hover:-translate-y-1 hover:z-20 transition-all duration-300 ease-out group flex flex-col">
     {{-- Thumbnail --}}
     <a href="{{ route('posts.show', $post->slug) }}" class="block aspect-w-16 aspect-h-9 bg-stone-100 h-48 overflow-hidden relative">
         @if($post->featured_image)
             <img src="{{ Storage::url($post->featured_image) }}" alt="{{ $post->title }}"
-                 class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
         @else
-            <div class="w-full h-full bg-gradient-to-br from-slate-800 to-slate-950 flex flex-col items-center justify-center text-white p-4">
+            <div class="w-full h-full bg-gradient-to-br from-slate-800 to-slate-950 flex flex-col items-center justify-center text-white p-4 group-hover:scale-110 transition-transform duration-500">
                 <span class="text-xs font-bold tracking-widest uppercase text-orange-400 font-mono">AI HUB</span>
                 <span class="text-[11px] text-slate-400 mt-1 font-medium uppercase tracking-wider">{{ $post->category->name ?? 'Article' }}</span>
             </div>

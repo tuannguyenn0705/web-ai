@@ -69,10 +69,15 @@
                 </svg>
             </button>
 
-            {{-- Signature Black Pill Button (Taste Skill GitHub-Pill Style) --}}
-            <button id="navActionPill" onclick="copyContactEmail()" 
-                    class="bg-gray-950 hover:bg-gray-800 text-white text-xs font-semibold px-4 py-1.5 rounded-full shadow-sm hover:shadow-md hover:scale-105 active:scale-95 transition-all duration-200 flex items-center gap-1.5 cursor-pointer whitespace-nowrap">
-                <span id="navActionText">ai@hub.io</span>
+            {{-- Subscribe CTA Pill Button --}}
+            <button type="button"
+                    id="subscribeTriggerBtn"
+                    onclick="toggleSubscribeModal(event)"
+                    class="bg-gray-950 hover:bg-orange-600 text-white text-xs font-semibold px-4 py-1.5 rounded-full shadow-xs hover:shadow-md hover:scale-105 active:scale-95 transition-all duration-200 flex items-center gap-1.5 cursor-pointer whitespace-nowrap">
+                <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                </svg>
+                <span>Subscribe</span>
             </button>
 
             {{-- Mobile Menu Hamburger Toggle --}}
@@ -100,8 +105,32 @@
                    value="{{ request('search') }}"
                    autocomplete="off"
                    class="w-full bg-gray-50 border border-gray-200 rounded-xl py-2 pl-10 pr-24 text-xs text-gray-900 placeholder-gray-400 focus:outline-none focus:border-orange-500">
-            <button type="submit" class="absolute right-1.5 px-3 py-1 bg-gray-950 hover:bg-gray-800 text-white text-[11px] font-semibold rounded-lg transition-colors">
+            <button type="submit" class="absolute right-1.5 px-3 py-1 bg-gray-950 hover:bg-gray-800 text-white text-[11px] font-semibold rounded-lg transition-colors cursor-pointer">
                 Search
+            </button>
+        </form>
+    </div>
+
+    {{-- Expandable Quick Subscribe Modal Popover --}}
+    <div id="navSubscribeModal" class="pointer-events-auto fixed top-24 left-4 right-4 max-w-md mx-auto bg-white/95 backdrop-blur-2xl border border-gray-200 shadow-[0_20px_50px_rgba(0,0,0,0.15)] rounded-2xl p-5 hidden z-50 transition-all duration-300">
+        <div class="flex items-start justify-between gap-3 mb-3">
+            <div>
+                <span class="text-[10px] font-bold uppercase tracking-wider text-orange-600 block">Weekly AI Briefing</span>
+                <h4 class="text-sm font-bold text-gray-900">Get AI News & Exclusive Deals</h4>
+                <p class="text-xs text-gray-500 mt-0.5">Delivered free to your inbox every week. No spam.</p>
+            </div>
+            <button type="button" onclick="closeSubscribeModal()" class="text-gray-400 hover:text-gray-700 p-1 cursor-pointer">
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+            </button>
+        </div>
+        <form action="{{ route('newsletter.subscribe') }}" method="POST" class="flex items-center gap-2">
+            @csrf
+            <input type="email" name="email" id="navSubscribeInput" required placeholder="Enter your email address..."
+                   class="flex-1 bg-gray-50 border border-gray-200 rounded-xl py-2.5 px-3.5 text-xs text-gray-900 placeholder-gray-400 focus:outline-none focus:border-gray-900">
+            <button type="submit" class="px-4 py-2.5 bg-gray-950 hover:bg-orange-600 text-white text-xs font-semibold rounded-xl transition-colors cursor-pointer whitespace-nowrap">
+                Join Free
             </button>
         </form>
     </div>
@@ -121,7 +150,7 @@
     </div>
 </header>
 
-{{-- Smart Auto-Hide on Scroll Down & Show on Scroll Up + Copy Script --}}
+{{-- Smart Auto-Hide on Scroll Down & Show on Scroll Up + Modal Scripts --}}
 <script>
 (function() {
     let lastScrollY = window.scrollY;
@@ -143,10 +172,8 @@
             navbar.classList.remove('translate-y-0', 'opacity-100');
             navbar.classList.add('-translate-y-28', 'opacity-0');
             
-            const searchModal = document.getElementById('navSearchModal');
-            if (searchModal && !searchModal.classList.contains('hidden')) {
-                searchModal.classList.add('hidden');
-            }
+            closeSearchModal();
+            closeSubscribeModal();
         } 
         // Scrolling UP -> Reveal smoothly
         else if (currentScrollY < lastScrollY) {
@@ -158,24 +185,8 @@
     }, { passive: true });
 })();
 
-function copyContactEmail() {
-    const email = "contact@ainewshub.com";
-    navigator.clipboard.writeText(email).then(() => {
-        const text = document.getElementById('navActionText');
-        const btn = document.getElementById('navActionPill');
-        
-        const originalText = text.innerText;
-        text.innerHTML = '<span class="text-emerald-400 font-bold">Copied</span>';
-        btn.classList.add('ring-2', 'ring-emerald-500/50');
-
-        setTimeout(() => {
-            text.innerText = originalText;
-            btn.classList.remove('ring-2', 'ring-emerald-500/50');
-        }, 2000);
-    });
-}
-
 function openSearchModal() {
+    closeSubscribeModal();
     const modal = document.getElementById('navSearchModal');
     if (!modal) return;
     modal.classList.remove('hidden');
@@ -209,24 +220,63 @@ function toggleSearchModal(event) {
     }
 }
 
-// Click outside or Escape key to dismiss search modal
+function openSubscribeModal() {
+    closeSearchModal();
+    const modal = document.getElementById('navSubscribeModal');
+    if (!modal) return;
+    modal.classList.remove('hidden');
+    const input = document.getElementById('navSubscribeInput');
+    if (input) {
+        setTimeout(() => {
+            input.focus();
+        }, 50);
+    }
+}
+
+function closeSubscribeModal() {
+    const modal = document.getElementById('navSubscribeModal');
+    if (modal && !modal.classList.contains('hidden')) {
+        modal.classList.add('hidden');
+    }
+}
+
+function toggleSubscribeModal(event) {
+    if (event) {
+        event.stopPropagation();
+    }
+    const modal = document.getElementById('navSubscribeModal');
+    if (!modal) return;
+
+    if (modal.classList.contains('hidden')) {
+        openSubscribeModal();
+    } else {
+        closeSubscribeModal();
+    }
+}
+
+// Click outside or Escape key to dismiss modals
 document.addEventListener('click', function(event) {
-    const modal = document.getElementById('navSearchModal');
-    const triggerBtn = document.getElementById('searchTriggerBtn');
-    
-    if (!modal || modal.classList.contains('hidden')) return;
-    
-    const isInsideModal = modal.contains(event.target);
-    const isTriggerBtn = triggerBtn && triggerBtn.contains(event.target);
-    
-    if (!isInsideModal && !isTriggerBtn) {
-        closeSearchModal();
+    const searchModal = document.getElementById('navSearchModal');
+    const searchTrigger = document.getElementById('searchTriggerBtn');
+    if (searchModal && !searchModal.classList.contains('hidden')) {
+        if (!searchModal.contains(event.target) && (!searchTrigger || !searchTrigger.contains(event.target))) {
+            closeSearchModal();
+        }
+    }
+
+    const subModal = document.getElementById('navSubscribeModal');
+    const subTrigger = document.getElementById('subscribeTriggerBtn');
+    if (subModal && !subModal.classList.contains('hidden')) {
+        if (!subModal.contains(event.target) && (!subTrigger || !subTrigger.contains(event.target))) {
+            closeSubscribeModal();
+        }
     }
 });
 
 document.addEventListener('keydown', function(event) {
     if (event.key === 'Escape') {
         closeSearchModal();
+        closeSubscribeModal();
     }
 });
 

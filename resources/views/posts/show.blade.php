@@ -132,7 +132,7 @@
             {{-- In-Article Featured Partner Deal Callout --}}
             @if(isset($sidebarDeals) && $sidebarDeals->count() > 0)
                 @php $calloutDeal = $sidebarDeals->first(); @endphp
-                <div class="bg-white rounded-2xl border border-gray-200/90 p-6 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-5">
+                <div class="bg-white rounded-2xl border border-gray-200/90 p-6 shadow-xs hover:shadow-lg hover:border-gray-300 hover:scale-[1.03] transition-all duration-300 ease-out flex flex-col sm:flex-row sm:items-center justify-between gap-5">
                     <div class="flex items-start sm:items-center gap-4">
                         <a href="{{ route('deals.go', $calloutDeal) }}" target="_blank" rel="noopener noreferrer nofollow"
                            class="w-16 h-16 rounded-lg overflow-hidden bg-stone-100 border border-gray-100 shrink-0 flex items-center justify-center">
@@ -195,7 +195,7 @@
 
                     <div class="space-y-4">
                         @foreach($sidebarDeals as $deal)
-                            <div class="p-3.5 rounded-xl border border-gray-100 bg-gray-50/60 hover:bg-white hover:border-gray-200 transition">
+                            <div class="p-3.5 rounded-xl border border-gray-100 bg-gray-50/60 hover:bg-white hover:border-gray-200 hover:shadow-md hover:scale-[1.04] transition-all duration-300 ease-out">
                                 <div class="flex items-start justify-between gap-3 mb-2.5">
                                     <a href="{{ route('deals.go', $deal) }}" target="_blank" rel="noopener noreferrer nofollow"
                                        class="w-11 h-11 rounded-md overflow-hidden bg-white border border-gray-200/80 shrink-0 flex items-center justify-center">

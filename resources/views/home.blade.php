@@ -224,15 +224,15 @@
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
         {{-- Left Spotlight Card (7 cols) --}}
         @if($mainFeatured)
-        <article class="lg:col-span-7 bg-white rounded-2xl border border-gray-200/90 shadow-xs hover:shadow-md transition overflow-hidden flex flex-col justify-between group">
+        <article class="relative lg:col-span-7 bg-white rounded-2xl border border-gray-200/90 shadow-xs hover:shadow-xl hover:border-gray-300 hover:scale-[1.03] hover:-translate-y-1 hover:z-20 transition-all duration-300 ease-out overflow-hidden flex flex-col justify-between group">
             <div>
                 <a href="{{ route('posts.show', $mainFeatured->slug) }}" class="block aspect-[16/9] bg-slate-900 overflow-hidden relative">
                     @if($mainFeatured->featured_image)
                         <img src="{{ Storage::url($mainFeatured->featured_image) }}"
                              alt="{{ $mainFeatured->title }}"
-                             class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                     @else
-                        <div class="w-full h-full bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-950 flex flex-col items-center justify-center p-6 text-center">
+                        <div class="w-full h-full bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-950 flex flex-col items-center justify-center p-6 text-center group-hover:scale-110 transition-transform duration-500">
                             <span class="text-xs font-bold tracking-[0.25em] uppercase text-orange-400 mb-2">FEATURED STORY</span>
                             <span class="text-base font-semibold text-white/90 line-clamp-2 max-w-md">{{ $mainFeatured->category->name ?? 'AI Analysis' }}</span>
                         </div>
@@ -278,14 +278,14 @@
         {{-- Right Side Stories Stack (5 cols) --}}
         <div class="lg:col-span-5 flex flex-col justify-between gap-4">
             @foreach($sideFeatured as $sidePost)
-                <article class="bg-white rounded-2xl border border-gray-200/90 p-4 sm:p-5 shadow-xs hover:shadow-md hover:border-gray-300 transition flex items-start gap-4 group flex-1">
+                <article class="relative bg-white rounded-2xl border border-gray-200/90 p-4 sm:p-5 shadow-xs hover:shadow-xl hover:border-gray-300 hover:scale-[1.05] hover:-translate-y-0.5 hover:z-20 transition-all duration-300 ease-out flex items-start gap-4 group flex-1">
                     <a href="{{ route('posts.show', $sidePost->slug) }}" class="w-28 h-24 sm:w-32 sm:h-24 rounded-xl overflow-hidden bg-slate-900 shrink-0 block">
                         @if($sidePost->featured_image)
                             <img src="{{ Storage::url($sidePost->featured_image) }}"
                                  alt="{{ $sidePost->title }}"
-                                 class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
                         @else
-                            <div class="w-full h-full bg-gradient-to-br from-slate-900 to-indigo-950 flex flex-col items-center justify-center p-2 text-center">
+                            <div class="w-full h-full bg-gradient-to-br from-slate-900 to-indigo-950 flex flex-col items-center justify-center p-2 text-center group-hover:scale-110 transition-transform duration-300">
                                 <span class="text-[9px] font-bold tracking-widest uppercase text-orange-400">AI HUB</span>
                                 <span class="text-[10px] font-medium text-white/80 mt-0.5 line-clamp-1">{{ $sidePost->category->name ?? 'News' }}</span>
                             </div>

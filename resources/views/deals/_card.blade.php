@@ -1,5 +1,5 @@
 {{-- HakoReview-style Deal Card Component --}}
-<article class="bg-white rounded-2xl border border-gray-200/90 p-6 shadow-xs hover:shadow-md hover:border-gray-300 transition duration-200 flex flex-col justify-between">
+<article class="relative bg-white rounded-2xl border border-gray-200/90 p-6 shadow-xs hover:shadow-xl hover:border-gray-300 hover:scale-[1.06] hover:-translate-y-1 hover:z-20 transition-all duration-300 ease-out flex flex-col justify-between group">
     <div>
         {{-- Top Section: Left Square Thumbnail + Right "Deal" & "DISCOUNT DEAL" --}}
         <div class="flex items-start justify-between gap-4 pb-5 mb-4 border-b border-gray-100">
@@ -8,13 +8,13 @@
                data-affiliate-url="{{ $deal->affiliate_url }}"
                target="_blank"
                rel="noopener noreferrer nofollow"
-               class="w-20 h-20 rounded-md overflow-hidden bg-stone-100 border border-gray-100 shrink-0 flex items-center justify-center group">
+               class="w-20 h-20 rounded-md overflow-hidden bg-stone-100 border border-gray-100 shrink-0 flex items-center justify-center">
                 @if($deal->image_url)
                     <img src="{{ $deal->image_url }}"
                          alt="{{ $deal->title }}"
-                         class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
                 @else
-                    <div class="w-full h-full bg-gradient-to-br from-slate-800 to-slate-950 flex flex-col items-center justify-center text-white p-2 text-center">
+                    <div class="w-full h-full bg-gradient-to-br from-slate-800 to-slate-950 flex flex-col items-center justify-center text-white p-2 text-center group-hover:scale-110 transition-transform duration-300">
                         <span class="text-xs font-extrabold tracking-wider uppercase text-orange-400">AI</span>
                         <span class="text-[10px] font-semibold text-slate-200 mt-0.5 leading-tight">DEAL</span>
                     </div>
