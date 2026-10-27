@@ -324,13 +324,14 @@ document.addEventListener('DOMContentLoaded', function() {
     const tocList = document.getElementById('article-toc-list');
     if (!proseBody || !tocBox || !tocList) return;
 
-    const headings = Array.from(proseBody.querySelectorAll('h2, h3'));
+    const headings = Array.from(proseBody.querySelectorAll('h2, h3'))
+        .filter(heading => heading.textContent.replace(/\u00a0/g, ' ').trim().length > 0);
     if (headings.length < 2) return;
 
     headings.forEach((heading, idx) => {
-        const text = heading.textContent.trim();
-        if (!text) return;
-        const id = heading.id || ('section-' + (idx + 1));
+        const text = heading.textContent.replace(/\u00a0/g, ' ').trim();
+        const stepNumber = idx + 1;
+        const id = heading.id || ('section-' + stepNumber);
         heading.id = id;
 
         const li = document.createElement('li');
@@ -341,7 +342,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const link = document.createElement('a');
         link.href = '#' + id;
         link.className = 'hover:text-orange-600 transition flex items-baseline gap-2';
-        link.innerHTML = '<span class="font-mono text-xs text-gray-400">' + (idx + 1) + '.</span><span>' + text + '</span>';
+        link.innerHTML = '<span class="font-mono text-xs text-gray-400">' + stepNumber + '.</span><span>' + text + '</span>';
         li.appendChild(link);
         tocList.appendChild(li);
     });
