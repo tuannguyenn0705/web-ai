@@ -30,7 +30,7 @@ class PageSeeder extends Seeder
                         <li><strong>Verified Deals & Discounts:</strong> Our partnerships team works directly with leading AI software vendors to negotiate exclusive promo codes and verified discounts for our readers.</li>
                     </ul>
                     <h2>Editorial Standards & Corrections</h2>
-                    <p>We update our reviews and comparisons continuously as models evolve (such as GPT-5, Claude 4, Gemini 2.0, and Cursor). If you spot an outdated metric or broken offer link, please reach out to our editorial desk at <a href="mailto:contact@aihubinsider.com">contact@aihubinsider.com</a>.</p>
+                    <p>We update our reviews and comparisons continuously as models evolve (such as GPT-5, Claude 4, Gemini 2.0, and Cursor). If you spot an outdated metric or broken offer link, please reach out to our editorial desk at <a href="mailto:aihubinsider@gmail.com">aihubinsider@gmail.com</a>.</p>
                 ',
             ],
             [
@@ -41,11 +41,9 @@ class PageSeeder extends Seeder
                 'is_active' => true,
                 'content' => '
                     <p class="lead">Whether you want to submit an AI tool for editorial review, share an exclusive promo code for our Deals directory, or discuss partnership opportunities, our team would love to hear from you.</p>
-                    <h2>Direct Contact Channels</h2>
+                    <h2>Direct Contact Channel</h2>
                     <ul>
-                        <li><strong>Editorial & Press Inquiries:</strong> <a href="mailto:contact@aihubinsider.com">contact@aihubinsider.com</a></li>
-                        <li><strong>Affiliate & Deal Submissions:</strong> <a href="mailto:partners@aihubinsider.com">partners@aihubinsider.com</a></li>
-                        <li><strong>Advertising & Sponsorships:</strong> <a href="mailto:ads@aihubinsider.com">ads@aihubinsider.com</a></li>
+                        <li><strong>Editorial, Press & Partnerships:</strong> <a href="mailto:aihubinsider@gmail.com">aihubinsider@gmail.com</a></li>
                     </ul>
                     <h2>U.S. Headquarters & Operations</h2>
                     <p><strong>AI Hub Insider LLC</strong><br>
@@ -78,7 +76,7 @@ class PageSeeder extends Seeder
                     </ul>
                     <h2>Why We Use Affiliate Partnerships</h2>
                     <p>Running in-depth benchmark tests on frontier AI models, maintaining server infrastructure, and publishing free step-by-step tutorials require significant resources. Affiliate commissions allow us to keep all of our articles, guides, and benchmarks 100% free for readers worldwide without intrusive pop-up advertisements.</p>
-                    <p>If you have any questions regarding this disclosure or our partnership policies, please contact us at <a href="mailto:contact@aihubinsider.com">contact@aihubinsider.com</a>.</p>
+                    <p>If you have any questions regarding this disclosure or our partnership policies, please contact us at <a href="mailto:aihubinsider@gmail.com">aihubinsider@gmail.com</a>.</p>
                 ',
             ],
             [
@@ -99,7 +97,7 @@ class PageSeeder extends Seeder
                     <h2>3. How We Use Your Information</h2>
                     <p>We never sell, rent, or trade your personal email address to third-party data brokers. Newsletter emails are used strictly to send our curated AI news briefings and verified software deals, and you may unsubscribe with a single click at any time.</p>
                     <h2>4. Your Privacy Rights (GDPR & CCPA)</h2>
-                    <p>You have the right to request access to, correction of, or deletion of any personal data we hold about you. To exercise these rights, email <a href="mailto:contact@aihubinsider.com">contact@aihubinsider.com</a>.</p>
+                    <p>You have the right to request access to, correction of, or deletion of any personal data we hold about you. To exercise these rights, email <a href="mailto:aihubinsider@gmail.com">aihubinsider@gmail.com</a>.</p>
                 ',
             ],
             [

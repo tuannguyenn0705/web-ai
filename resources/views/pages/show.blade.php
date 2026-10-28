@@ -37,8 +37,8 @@
                         <p class="text-xs text-gray-500 leading-relaxed mb-1.5">
                             Questions about our reviews or partner deals?
                         </p>
-                        <a href="mailto:contact@aihubinsider.com" class="text-xs font-semibold text-orange-600 hover:underline">
-                            contact@aihubinsider.com
+                        <a href="mailto:aihubinsider@gmail.com" class="text-xs font-semibold text-orange-600 hover:underline">
+                            aihubinsider@gmail.com
                         </a>
                     </div>
                     <div class="pt-3 border-t border-gray-100 text-xs text-gray-500">

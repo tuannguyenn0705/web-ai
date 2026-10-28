@@ -137,6 +137,6 @@ class DatabaseSeeder extends Seeder
         Setting::set('site_name', 'AI Hub Insider');
         Setting::set('site_description', 'Latest AI news, tool reviews, tutorials, and exclusive AI deals');
         Setting::set('posts_per_page', '15');
-        Setting::set('contact_email', 'contact@aihubinsider.com');
+        Setting::set('contact_email', 'aihubinsider@gmail.com');
     }
 }
