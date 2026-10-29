@@ -120,4 +120,50 @@
     .prose ol:has(> li[data-list="ordered"]) > li[data-list="bullet"]:not([class*="ql-indent-"]) {
         margin-left: 1.5rem;
     }
+
+    /* Clean, Minimalist Editorial Table Styling in Client Prose */
+    .prose table {
+        width: 100% !important;
+        border-collapse: separate !important;
+        border-spacing: 0 !important;
+        margin: 1.75rem 0 !important;
+        border: 1px solid #e2e8f0 !important;
+        border-radius: 0.75rem !important;
+        overflow: hidden !important;
+        background-color: #ffffff !important;
+        font-size: 0.925rem !important;
+        line-height: 1.6 !important;
+    }
+
+    .prose table th,
+    .prose table td {
+        padding: 0.75rem 1rem !important;
+        border-bottom: 1px solid #f1f5f9 !important;
+        border-right: 1px solid #f1f5f9 !important;
+        text-align: left !important;
+        vertical-align: top !important;
+        color: #334155 !important;
+    }
+
+    .prose table tr th:last-child,
+    .prose table tr td:last-child {
+        border-right: none !important;
+    }
+
+    .prose table tbody tr:last-child td {
+        border-bottom: none !important;
+    }
+
+    /* Hàng đầu tiên của bảng tự động hiển thị như dòng tiêu đề cột (Header Row) gọn gàng */
+    .prose table thead th,
+    .prose table tbody tr:first-child td {
+        background-color: #f8fafc !important;
+        color: #0f172a !important;
+        font-weight: 700 !important;
+        border-bottom: 1.5px solid #e2e8f0 !important;
+    }
+
+    .prose table tbody tr:not(:first-child):hover td {
+        background-color: #f8fafc !important;
+    }
 }

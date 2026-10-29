@@ -453,6 +453,7 @@
 
 @push('scripts')
 <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
+@include('admin.posts._quill_table_helper')
 <script>
 document.addEventListener('DOMContentLoaded', function () {
     // Cấu hình thanh công cụ trực quan, chia nhóm gọn đẹp trên 1 hàng
@@ -461,7 +462,7 @@ document.addEventListener('DOMContentLoaded', function () {
         ['bold', 'italic', 'underline', 'strike'],
         [{ 'color': [] }, { 'background': [] }],
         [{ 'align': [] }, { 'list': 'ordered'}, { 'list': 'bullet' }, { 'indent': '-1'}, { 'indent': '+1' }],
-        ['link', 'image', 'blockquote', 'code-block'],
+        ['link', 'image', 'table', 'blockquote', 'code-block'],
         ['clean']
     ];
 
@@ -470,10 +471,12 @@ document.addEventListener('DOMContentLoaded', function () {
         theme: 'snow',
         placeholder: 'Nhập nội dung bài viết vào đây...',
         modules: {
+            table: true,
             toolbar: {
                 container: toolbarOptions,
                 handlers: {
-                    image: handleImageUploadTrigger
+                    image: handleImageUploadTrigger,
+                    table: function() {}
                 }
             }
         }
@@ -497,6 +500,7 @@ document.addEventListener('DOMContentLoaded', function () {
         { selector: 'button.ql-indent[value="+1"]', text: 'Tăng thụt lề dòng (Tab)' },
         { selector: 'button.ql-link', text: 'Chèn liên kết (Link URL)' },
         { selector: 'button.ql-image', text: 'Chèn hình ảnh từ máy tính' },
+        { selector: 'button.ql-table', text: 'Chèn bảng so sánh (Table)' },
         { selector: 'button.ql-blockquote', text: 'Khối trích dẫn (Blockquote)' },
         { selector: 'button.ql-code-block', text: 'Khối mã nguồn (Code block)' },
         { selector: 'button.ql-clean', text: 'Xóa định dạng vùng đang chọn' }
@@ -513,10 +517,13 @@ document.addEventListener('DOMContentLoaded', function () {
     const statusBadge = document.getElementById('uploadStatusBadge');
     const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
+    // Khởi tạo hỗ trợ Tạo bảng, Chỉnh sửa bảng và Copy-Paste bảng
+    initQuillTableSupport(quill, contentInput);
+
     // Nạp nội dung hiện tại của bài viết
     const initialContent = {!! json_encode(old('content', $post->content)) !!};
     if (initialContent) {
-        quill.root.innerHTML = initialContent;
+        quill.clipboard.dangerouslyPasteHTML(initialContent, 'silent');
     }
 
     // Đồng bộ nội dung vào hidden input khi người dùng gõ

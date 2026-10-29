@@ -322,7 +322,19 @@ document.addEventListener('DOMContentLoaded', function() {
     const proseBody = document.getElementById('article-prose-body');
     const tocBox = document.getElementById('article-toc-box');
     const tocList = document.getElementById('article-toc-list');
-    if (!proseBody || !tocBox || !tocList) return;
+    if (!proseBody) return;
+
+    // Bọc các bảng <table> trong khung cuộn ngang mượt mà trên màn hình nhỏ
+    proseBody.querySelectorAll('table').forEach(table => {
+        if (!table.parentElement.classList.contains('table-scroll-wrapper')) {
+            const wrapper = document.createElement('div');
+            wrapper.className = 'table-scroll-wrapper overflow-x-auto my-6';
+            table.parentNode.insertBefore(wrapper, table);
+            wrapper.appendChild(table);
+        }
+    });
+
+    if (!tocBox || !tocList) return;
 
     const headings = Array.from(proseBody.querySelectorAll('h2, h3'))
         .filter(heading => heading.textContent.replace(/\u00a0/g, ' ').trim().length > 0);
