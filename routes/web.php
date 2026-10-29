@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DealController as AdminDealController;
 use App\Http\Controllers\Admin\PostController as AdminPostController;
+use App\Http\Controllers\Admin\TagController as AdminTagController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DealController;
@@ -69,4 +70,8 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
 
     // Quản lý danh mục
     Route::resource('categories', AdminCategoryController::class);
+
+    // Quản lý thẻ Tags nhanh từ trang bài viết (AJAX)
+    Route::post('tags', [AdminTagController::class, 'store'])->name('tags.store');
+    Route::delete('tags/{tag}', [AdminTagController::class, 'destroy'])->name('tags.destroy');
 });

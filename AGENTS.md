@@ -147,7 +147,7 @@ This project has domain-specific skills available in `**/skills/**`. You MUST ac
 
 # Quy định từ người dùng (Bắt buộc tuân thủ)
 
-- Tuyệt đối KHÔNG ĐƯỢC tự ý tạo nhánh, tự ý commit hay tự ý đẩy code (git push) lên GitHub nếu không có sự cho phép rõ ràng từ người dùng.
-- Chỉ khi nào người dùng trực tiếp yêu cầu tạo nhánh, commit hoặc push thì mới được phép thực hiện.
+- Trước khi bắt đầu viết hoặc sửa code, LUÔN LUÔN phải chuyển qua 1 nhánh mới (feature branch) để code, TUYỆT ĐỐI KHÔNG BAO GIỜ ĐƯỢC TỰ Ý CODE THẲNG TRÊN NHÁNH `main`.
+- Tuyệt đối KHÔNG ĐƯỢC tự ý commit hay tự ý đẩy code (`git push`) lên GitHub nếu không có sự cho phép rõ ràng từ người dùng. Chỉ khi nào người dùng trực tiếp yêu cầu commit hoặc push thì mới được phép thực hiện.
 
 </laravel-boost-guidelines>

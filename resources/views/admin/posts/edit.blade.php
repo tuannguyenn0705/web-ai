@@ -442,26 +442,10 @@
             </div>
 
             {{-- Box Thẻ Tags --}}
-            @if($tags->count())
-                @php
-                    $currentTagIds = $post->tags->pluck('id')->toArray();
-                @endphp
-                <div class="bg-white p-5 rounded-2xl border border-gray-200/90 shadow-xs space-y-3">
-                    <h3 class="text-xs font-semibold uppercase tracking-wider text-gray-700 border-b border-gray-100 pb-2.5">
-                        Gắn Thẻ (Tags)
-                    </h3>
-                    <div class="max-h-48 overflow-y-auto space-y-2 pr-1">
-                        @foreach($tags as $tag)
-                            <label class="flex items-center gap-2 text-xs text-gray-700 hover:text-gray-900 cursor-pointer select-none">
-                                <input type="checkbox" name="tags[]" value="{{ $tag->id }}"
-                                       {{ in_array($tag->id, old('tags', $currentTagIds)) ? 'checked' : '' }}
-                                       class="h-3.5 w-3.5 text-gray-900 focus:ring-gray-900 border-gray-300 rounded">
-                                <span>#{{ $tag->name }}</span>
-                            </label>
-                        @endforeach
-                    </div>
-                </div>
-            @endif
+            @include('admin.posts._tags_box', [
+                'tags' => $tags,
+                'selectedTagIds' => $post->tags->pluck('id')->toArray(),
+            ])
         </div>
     </div>
 </form>
