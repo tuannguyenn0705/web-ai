@@ -134,14 +134,16 @@ async function addNewTagFromInput() {
     addBtn.textContent = '...';
 
     try {
-        const response = await fetch(@js(route('admin.tags.store')), {
+        const response = await fetch(@js(route('admin.tags.store', [], false)), {
             method: 'POST',
+            credentials: 'same-origin',
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
+                'X-Requested-With': 'XMLHttpRequest',
                 'X-CSRF-TOKEN': csrfToken || ''
             },
-            body: JSON.stringify({ name: rawName })
+            body: JSON.stringify({ name: rawName, _token: csrfToken || '' })
         });
 
         const data = await response.json();
@@ -220,14 +222,16 @@ async function deleteTagItem(tagId, tagName, btnEl) {
     }
 
     const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
-    const baseUrl = @js(url('/admin/tags'));
+    const baseUrl = @js(route('admin.tags.store', [], false));
     btnEl.disabled = true;
 
     try {
         const response = await fetch(`${baseUrl}/${tagId}`, {
             method: 'DELETE',
+            credentials: 'same-origin',
             headers: {
                 'Accept': 'application/json',
+                'X-Requested-With': 'XMLHttpRequest',
                 'X-CSRF-TOKEN': csrfToken || ''
             }
         });

@@ -512,7 +512,7 @@ document.addEventListener('DOMContentLoaded', function () {
         formData.append('image', file);
 
         try {
-            const response = await fetch("{{ route('admin.posts.upload-image') }}", {
+            const response = await fetch("{{ route('admin.posts.upload-image', [], false) }}", {
                 method: 'POST',
                 headers: {
                     'X-CSRF-TOKEN': csrfToken,
