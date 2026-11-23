@@ -201,6 +201,11 @@
 </section>
 
 {{-- ======================================================== --}}
+{{-- 1B. FEATURED AI SPOTLIGHTS (DEDICATED 3-COLUMN ROW)       --}}
+{{-- ======================================================== --}}
+@include('spotlights.partials._home_row', ['spotlights' => $spotlights ?? []])
+
+{{-- ======================================================== --}}
 {{-- 2. EDITOR'S PICKS / FEATURED STORIES (MAGAZINE GRID)     --}}
 {{-- ======================================================== --}}
 @if($featuredPosts->count() > 0)

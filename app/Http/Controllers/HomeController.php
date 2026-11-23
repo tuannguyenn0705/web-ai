@@ -52,6 +52,8 @@ class HomeController extends Controller
             ->orderBy('order')
             ->get();
 
-        return view('home', compact('featuredPosts', 'featuredDeals', 'latestPosts', 'categories'));
+        $spotlights = config('spotlights.items', []);
+
+        return view('home', compact('featuredPosts', 'featuredDeals', 'latestPosts', 'categories', 'spotlights'));
     }
 }

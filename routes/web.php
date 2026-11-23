@@ -13,6 +13,7 @@ use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\SitemapController;
+use App\Http\Controllers\SpotlightController;
 use App\Http\Controllers\TagController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,6 +23,48 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 */
 
+// === DEDICATED AI REVIEW SUBDOMAINS (ADS-READY LANDING PAGES) ===
+// Primary Subdomains:
+// - aiapplyreview.aihubinsider.com  (Local: aiapplyreview.localhost:8000)
+// - anarareview.aihubinsider.com    (Local: anarareview.localhost:8000)
+// - typelessreview.aihubinsider.com (Local: typelessreview.localhost:8000)
+Route::domain('aiapplyreview.{base_domain}')
+    ->where(['base_domain' => '.+'])
+    ->group(function () {
+        Route::get('/', [SpotlightController::class, 'iapply'])->name('spotlights.iapply');
+    });
+
+Route::domain('anarareview.{base_domain}')
+    ->where(['base_domain' => '.+'])
+    ->group(function () {
+        Route::get('/', [SpotlightController::class, 'anara'])->name('spotlights.anara');
+    });
+
+Route::domain('typelessreview.{base_domain}')
+    ->where(['base_domain' => '.+'])
+    ->group(function () {
+        Route::get('/', [SpotlightController::class, 'typeless'])->name('spotlights.typeless');
+    });
+
+// Alias Subdomains (in case visitors omit "review" or type "iapplyreview")
+Route::domain('{alias}.{base_domain}')
+    ->where(['alias' => 'iapplyreview|aiapply|iapply', 'base_domain' => '.+'])
+    ->group(function () {
+        Route::get('/', [SpotlightController::class, 'iapply'])->name('spotlights.alias.iapply');
+    });
+
+Route::domain('anara.{base_domain}')
+    ->where(['base_domain' => '.+'])
+    ->group(function () {
+        Route::get('/', [SpotlightController::class, 'anara'])->name('spotlights.alias.anara');
+    });
+
+Route::domain('typeless.{base_domain}')
+    ->where(['base_domain' => '.+'])
+    ->group(function () {
+        Route::get('/', [SpotlightController::class, 'typeless'])->name('spotlights.alias.typeless');
+    });
+
 // === TRANG CÔNG KHAI (PUBLIC CLIENT ROUTES - ENGLISH URLS) ===
 
 // Homepage
@@ -30,6 +73,14 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 // Articles / Posts
 Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
 Route::get('/posts/{slug}', [PostController::class, 'show'])->name('posts.show');
+
+// Fallback Path Routes (/ai/iapply, /ai/aiapply, /ai/anara, /ai/typeless)
+Route::prefix('ai')->name('spotlights.path.')->group(function () {
+    Route::get('/iapply', [SpotlightController::class, 'iapply'])->name('iapply');
+    Route::get('/aiapply', [SpotlightController::class, 'iapply'])->name('aiapply');
+    Route::get('/anara', [SpotlightController::class, 'anara'])->name('anara');
+    Route::get('/typeless', [SpotlightController::class, 'typeless'])->name('typeless');
+});
 
 // Deals & Affiliate AI
 Route::get('/deals', [DealController::class, 'index'])->name('deals.index');

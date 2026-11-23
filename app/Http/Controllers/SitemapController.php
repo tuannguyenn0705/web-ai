@@ -27,6 +27,16 @@ class SitemapController extends Controller
             ['loc' => route('deals.index'), 'priority' => '0.9', 'changefreq' => 'daily'],
         ];
 
+        foreach (config('spotlights.items', []) as $spotlight) {
+            if (isset($spotlight['route'])) {
+                $staticUrls[] = [
+                    'loc' => route($spotlight['route']),
+                    'priority' => '0.9',
+                    'changefreq' => 'weekly',
+                ];
+            }
+        }
+
         foreach ($staticUrls as $item) {
             $xml .= '  <url>'."\n";
             $xml .= '    <loc>'.e($item['loc']).'</loc>'."\n";
