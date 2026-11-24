@@ -17,7 +17,7 @@
                 'Auto-Apply 100 / 250 / 750 credit bundles',
             ],
             'cta' => 'Start Auto-Applying Now',
-            'url' => 'https://www.aiapply.co/auto-apply?via=aihub',
+            'url' => 'https://www.aiapply.co/auto-apply?via=aihubinsider',
             'note' => 'Seasonal 30% off & annual bundle discounts active',
         ],
         [
@@ -31,7 +31,7 @@
                 'Includes 50+ language resume translation',
             ],
             'cta' => 'Claim 40% Student Code',
-            'url' => 'https://www.aiapply.co/students?via=aihub',
+            'url' => 'https://www.aiapply.co/students?via=aihubinsider',
             'note' => 'Verified via official aiapply.co/students portal',
         ],
         [
@@ -45,7 +45,7 @@
                 'Role-specific interview question generator',
             ],
             'cta' => 'Try Free ATS Tools',
-            'url' => 'https://www.aiapply.co/tools?via=aihub',
+            'url' => 'https://www.aiapply.co/tools?via=aihubinsider',
             'note' => 'No credit card required to test free utilities',
         ],
     ];
@@ -56,42 +56,42 @@
         [
             'question' => 'How does AIApply\'s Auto-Apply feature actually work?',
             'answers' => [
-                '<a href="https://www.aiapply.co/auto-apply?via=aihub" target="_blank" rel="noopener noreferrer sponsored nofollow" class="underline font-semibold text-blue-600 hover:text-blue-700">AIApply Auto Apply</a> scans over 20 million live job listings across thousands of global job boards and corporate career portals every day to find roles that match your target titles, salary floor, and location preferences.',
+                '<a href="https://www.aiapply.co/auto-apply?via=aihubinsider" target="_blank" rel="noopener noreferrer sponsored nofollow" class="underline font-semibold text-blue-600 hover:text-blue-700">AIApply Auto Apply</a> scans over 20 million live job listings across thousands of global job boards and corporate career portals every day to find roles that match your target titles, salary floor, and location preferences.',
                 'Once you configure your preferences and approve your base resume profile, the agent automatically customizes your application materials and submits job applications on your behalf—helping 76% of active users land their first interview within 10 days.',
             ],
         ],
         [
             'question' => 'What is Interview Buddy and can it help during live remote interviews?',
             'answers' => [
-                '<a href="https://www.aiapply.co/interview-answer-buddy?via=aihub" target="_blank" rel="noopener noreferrer sponsored nofollow" class="underline font-semibold text-blue-600 hover:text-blue-700">Interview Buddy</a> is AIApply\'s real-time interview coaching assistant (rated 4.7/5 across 387+ reviews). It listens to interview questions during mock practice or live video calls and generates tailored talking points and structured STAR-method answers on your screen.',
+                '<a href="https://www.aiapply.co/interview-answer-buddy?via=aihubinsider" target="_blank" rel="noopener noreferrer sponsored nofollow" class="underline font-semibold text-blue-600 hover:text-blue-700">Interview Buddy</a> is AIApply\'s real-time interview coaching assistant (rated 4.7/5 across 387+ reviews). It listens to interview questions during mock practice or live video calls and generates tailored talking points and structured STAR-method answers on your screen.',
                 'After the session finishes, it provides a detailed post-interview performance breakdown so you can refine weak answers before your next round.',
             ],
         ],
         [
             'question' => 'How much does AIApply cost, and how are Auto-Apply credits structured?',
             'answers' => [
-                'AIApply offers a Free Tier & Free Career Tools suite (<a href="https://www.aiapply.co/tools?via=aihub" target="_blank" rel="noopener noreferrer sponsored nofollow" class="underline font-semibold text-blue-600 hover:text-blue-700">aiapply.co/tools</a>) so you can scan your resume for ATS compatibility, generate sample cover letters, and browse matches at $0.',
+                'AIApply offers a Free Tier & Free Career Tools suite (<a href="https://www.aiapply.co/tools?via=aihubinsider" target="_blank" rel="noopener noreferrer sponsored nofollow" class="underline font-semibold text-blue-600 hover:text-blue-700">aiapply.co/tools</a>) so you can scan your resume for ATS compatibility, generate sample cover letters, and browse matches at $0.',
                 'For power job seekers, the Pro Toolkit (unlimited ATS resumes & cover letters) runs around $29/month (or ~$144/year billed annually). Automated submissions run on flexible Auto-Apply tiers (such as 100 applications/mo at ~$49, 250 applications/mo at ~$99, or 750 quarterly), while Interview Buddy is available around $19/mo or $99/yr.',
             ],
         ],
         [
             'question' => 'How do I get the 40% Student Discount or 30% Seasonal Promo?',
             'answers' => [
-                'Students and recent graduates can visit <a href="https://www.aiapply.co/students?via=aihub" target="_blank" rel="noopener noreferrer sponsored nofollow" class="underline font-semibold text-blue-600 hover:text-blue-700">aiapply.co/students</a> and verify an active academic email address to receive a unique 40% off promo code for checkout.',
+                'Students and recent graduates can visit <a href="https://www.aiapply.co/students?via=aihubinsider" target="_blank" rel="noopener noreferrer sponsored nofollow" class="underline font-semibold text-blue-600 hover:text-blue-700">aiapply.co/students</a> and verify an active academic email address to receive a unique 40% off promo code for checkout.',
                 'Non-students can take advantage of AIApply\'s seasonal sitewide banners (such as the 30% off Black Friday / seasonal plan discount) or save up to 50% by selecting annual or quarterly billing.',
             ],
         ],
         [
             'question' => 'Will ATS systems flag resumes and cover letters generated by AIApply?',
             'answers' => [
-                'No—in fact, AIApply\'s <a href="https://www.aiapply.co/resume-builder?via=aihub" target="_blank" rel="noopener noreferrer sponsored nofollow" class="underline font-semibold text-blue-600 hover:text-blue-700">AI Resume Builder</a> is engineered specifically to pass corporate Applicant Tracking Systems (Workday, Greenhouse, Lever, iCIMS).',
+                'No—in fact, AIApply\'s <a href="https://www.aiapply.co/resume-builder?via=aihubinsider" target="_blank" rel="noopener noreferrer sponsored nofollow" class="underline font-semibold text-blue-600 hover:text-blue-700">AI Resume Builder</a> is engineered specifically to pass corporate Applicant Tracking Systems (Workday, Greenhouse, Lever, iCIMS).',
                 'It uses clean, single-column or structured ATS-readable hierarchy and aligns your real work achievements with the exact competency keywords parsed from each target job description.',
             ],
         ],
         [
             'question' => 'Can AIApply translate my resume for international job applications?',
             'answers' => [
-                'Yes. The built-in <a href="https://www.aiapply.co/resume-translator?via=aihub" target="_blank" rel="noopener noreferrer sponsored nofollow" class="underline font-semibold text-blue-600 hover:text-blue-700">AI Resume Translator</a> converts and formats your resume into over 50 languages while preserving professional industry terminology—making cross-border remote and relocation job hunting effortless.',
+                'Yes. The built-in <a href="https://www.aiapply.co/resume-translator?via=aihubinsider" target="_blank" rel="noopener noreferrer sponsored nofollow" class="underline font-semibold text-blue-600 hover:text-blue-700">AI Resume Translator</a> converts and formats your resume into over 50 languages while preserving professional industry terminology—making cross-border remote and relocation job hunting effortless.',
             ],
         ],
     ];
@@ -145,11 +145,11 @@
 
                         <h2 id="aiapply-features" class="scroll-mt-28">Core AI Modules &amp; Career Automation Features</h2>
                         <ul>
-                            <li><strong>Auto Apply Agent (<a href="https://www.aiapply.co/auto-apply?via=aihub" target="_blank" rel="noopener noreferrer sponsored nofollow">aiapply.co/auto-apply</a>):</strong> Continuously matches your profile against 20M+ global openings and submits tailored applications automatically on your behalf (with over 372,200+ roles applied to recently).</li>
-                            <li><strong>ATS-Optimized AI Resume Builder (<a href="https://www.aiapply.co/resume-builder?via=aihub" target="_blank" rel="noopener noreferrer sponsored nofollow">aiapply.co/resume-builder</a>):</strong> Generates role-specific resumes from scratch or via 1-click LinkedIn import, highlighting the exact skills and metrics recruiters filter for.</li>
-                            <li><strong>Instant AI Cover Letter Generator (<a href="https://www.aiapply.co/cover-letter-generator?via=aihub" target="_blank" rel="noopener noreferrer sponsored nofollow">aiapply.co/cover-letter-generator</a>):</strong> Crafts persuasive, job-aligned cover letters in seconds without generic boilerplate fluff.</li>
-                            <li><strong>Live Interview Buddy (<a href="https://www.aiapply.co/interview-answer-buddy?via=aihub" target="_blank" rel="noopener noreferrer sponsored nofollow">aiapply.co/interview-answer-buddy</a>):</strong> Real-time desktop and screen interview copilot (4.7/5 rating) that provides live answer prompts during interviews plus detailed post-interview feedback.</li>
-                            <li><strong>50+ Language Resume Translator &amp; Free ATS Tools (<a href="https://www.aiapply.co/tools?via=aihub" target="_blank" rel="noopener noreferrer sponsored nofollow">aiapply.co/tools</a>):</strong> Translate resumes for international roles, run free ATS keyword scans, calculate expected salary bands, and generate follow-up emails.</li>
+                            <li><strong>Auto Apply Agent (<a href="https://www.aiapply.co/auto-apply?via=aihubinsider" target="_blank" rel="noopener noreferrer sponsored nofollow">aiapply.co/auto-apply</a>):</strong> Continuously matches your profile against 20M+ global openings and submits tailored applications automatically on your behalf (with over 372,200+ roles applied to recently).</li>
+                            <li><strong>ATS-Optimized AI Resume Builder (<a href="https://www.aiapply.co/resume-builder?via=aihubinsider" target="_blank" rel="noopener noreferrer sponsored nofollow">aiapply.co/resume-builder</a>):</strong> Generates role-specific resumes from scratch or via 1-click LinkedIn import, highlighting the exact skills and metrics recruiters filter for.</li>
+                            <li><strong>Instant AI Cover Letter Generator (<a href="https://www.aiapply.co/cover-letter-generator?via=aihubinsider" target="_blank" rel="noopener noreferrer sponsored nofollow">aiapply.co/cover-letter-generator</a>):</strong> Crafts persuasive, job-aligned cover letters in seconds without generic boilerplate fluff.</li>
+                            <li><strong>Live Interview Buddy (<a href="https://www.aiapply.co/interview-answer-buddy?via=aihubinsider" target="_blank" rel="noopener noreferrer sponsored nofollow">aiapply.co/interview-answer-buddy</a>):</strong> Real-time desktop and screen interview copilot (4.7/5 rating) that provides live answer prompts during interviews plus detailed post-interview feedback.</li>
+                            <li><strong>50+ Language Resume Translator &amp; Free ATS Tools (<a href="https://www.aiapply.co/tools?via=aihubinsider" target="_blank" rel="noopener noreferrer sponsored nofollow">aiapply.co/tools</a>):</strong> Translate resumes for international roles, run free ATS keyword scans, calculate expected salary bands, and generate follow-up emails.</li>
                         </ul>
                     </div>
 
@@ -265,4 +265,5 @@
 @include('spotlights.partials._faq_section', ['spotlight' => $spotlight, 'faqs' => $faqs])
 
 @include('spotlights.partials._mobile_sticky_cta', ['spotlight' => $spotlight])
+@include('spotlights.partials._popup_modal', ['spotlight' => $spotlight])
 @endsection

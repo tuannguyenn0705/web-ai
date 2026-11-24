@@ -268,4 +268,5 @@
 @include('spotlights.partials._faq_section', ['spotlight' => $spotlight, 'faqs' => $faqs])
 
 @include('spotlights.partials._mobile_sticky_cta', ['spotlight' => $spotlight])
+@include('spotlights.partials._popup_modal', ['spotlight' => $spotlight])
 @endsection

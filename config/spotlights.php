@@ -6,7 +6,7 @@ return [
     | Dedicated AI Spotlight Landing Pages (Hardcoded / No Database Required)
     |--------------------------------------------------------------------------
     | Official Partner / Affiliate Referral Links:
-    | - AIApply:  https://www.aiapply.co/?via=aihub
+    | - AIApply:  https://www.aiapply.co/?via=aihubinsider
     | - ANARA:    https://anara.com?via=aihub
     | - Typeless: https://www.typeless.com/?via=aihubb
     */
@@ -24,9 +24,9 @@ return [
             'category' => 'AI Career & Job Search',
             'badge' => '30% OFF + 40% STUDENT',
             'offer_badge' => '739,400+ Interviews Landed • 2M+ Users',
-            'ref_url' => 'https://www.aiapply.co/?via=aihub',
-            'primary_url' => 'https://www.aiapply.co/auto-apply?via=aihub',
-            'secondary_url' => 'https://www.aiapply.co/resume-builder?via=aihub',
+            'ref_url' => 'https://www.aiapply.co/?via=aihubinsider',
+            'primary_url' => 'https://www.aiapply.co/auto-apply?via=aihubinsider',
+            'secondary_url' => 'https://www.aiapply.co/resume-builder?via=aihubinsider',
             'cta_primary' => 'Start Auto-Applying Now',
             'cta_secondary' => 'Try AI Resume Builder',
             'banner_image' => 'images/banners/iapply-banner.png',
@@ -50,12 +50,12 @@ return [
                 'Job Database' => '20M+ Live Jobs Scanned Daily (50+ Resume Translation Languages)',
             ],
             'tags' => [
-                ['label' => 'Auto Apply Agent', 'url' => 'https://www.aiapply.co/auto-apply?via=aihub'],
-                ['label' => 'AI Resume Builder', 'url' => 'https://www.aiapply.co/resume-builder?via=aihub'],
-                ['label' => 'Cover Letter AI', 'url' => 'https://www.aiapply.co/cover-letter-generator?via=aihub'],
-                ['label' => 'Live Interview Buddy', 'url' => 'https://www.aiapply.co/interview-answer-buddy?via=aihub'],
-                ['label' => '40% Student Discount', 'url' => 'https://www.aiapply.co/students?via=aihub'],
-                ['label' => 'Free ATS Tools', 'url' => 'https://www.aiapply.co/tools?via=aihub'],
+                ['label' => 'Auto Apply Agent', 'url' => 'https://www.aiapply.co/auto-apply?via=aihubinsider'],
+                ['label' => 'AI Resume Builder', 'url' => 'https://www.aiapply.co/resume-builder?via=aihubinsider'],
+                ['label' => 'Cover Letter AI', 'url' => 'https://www.aiapply.co/cover-letter-generator?via=aihubinsider'],
+                ['label' => 'Live Interview Buddy', 'url' => 'https://www.aiapply.co/interview-answer-buddy?via=aihubinsider'],
+                ['label' => '40% Student Discount', 'url' => 'https://www.aiapply.co/students?via=aihubinsider'],
+                ['label' => 'Free ATS Tools', 'url' => 'https://www.aiapply.co/tools?via=aihubinsider'],
             ],
             'scorecard' => [
                 ['label' => 'Auto-Apply Job Matching Accuracy (20M+ Jobs)', 'score' => '4.9', 'percent' => 98],
@@ -63,6 +63,30 @@ return [
                 ['label' => 'Live Interview Buddy & Real-Time Coaching', 'score' => '4.7', 'percent' => 94],
                 ['label' => 'Time Saved vs. Manual Applications (10-Day Metric)', 'score' => '4.9', 'percent' => 98],
                 ['label' => 'Pricing Value & Free ATS Career Tools', 'score' => '4.7', 'percent' => 94],
+            ],
+            'popup' => [
+                'bg_image' => 'images/spotlights/popup-aiapply.jpg',
+                'eyebrow' => 'Verified Partner Highlight',
+                'ribbon_title' => 'EXCLUSIVE CAREER BONUS OFFER',
+                'subtitle' => 'Stop applying manually for weeks — let AIApply tailor ATS resumes & auto-submit across 20M+ live jobs.',
+                'cards' => [
+                    [
+                        'icon' => 'tag',
+                        'highlight' => 'Save 30%–50%',
+                        'label' => 'Auto-Apply & Pro Career Suite',
+                        'pill' => '76% Land Interviews in 10 Days',
+                    ],
+                    [
+                        'icon' => 'academic',
+                        'highlight' => '40% Student Off',
+                        'label' => 'Verified Academic Promo Code',
+                        'pill' => 'Plus $0 Free ATS Resume Toolkit',
+                    ],
+                ],
+                'notice' => 'Trusted by 2,064,000+ active job seekers with over 739,400+ interviews landed worldwide.',
+                'cta_label' => 'Claim 30%–40% Bonus Offer',
+                'cta_url' => 'https://www.aiapply.co/?via=aihubinsider',
+                'cta_sub' => 'Official verified partner link • Instant offer activation',
             ],
         ],
 
@@ -118,6 +142,30 @@ return [
                 ['label' => 'Usability for Non-Technical Ops & Business Teams', 'score' => '4.8', 'percent' => 96],
                 ['label' => 'Time & Engineering Cost Savings (ROI)', 'score' => '4.9', 'percent' => 98],
             ],
+            'popup' => [
+                'bg_image' => 'images/spotlights/popup-anara.jpg',
+                'eyebrow' => 'Enterprise Partner Access',
+                'ribbon_title' => 'ENTERPRISE DEMO & PILOT BONUS',
+                'subtitle' => 'Turn natural-language business workflows into production-ready custom software in hours, not months.',
+                'cards' => [
+                    [
+                        'icon' => 'bolt',
+                        'highlight' => 'Free 1:1 Demo',
+                        'label' => 'Live Architecture Walkthrough',
+                        'pill' => 'Sales KPI, Inventory & Ops Portals',
+                    ],
+                    [
+                        'icon' => 'shield',
+                        'highlight' => '100% Code Own',
+                        'label' => 'Full Source Code & IP Rights',
+                        'pill' => 'Zero Proprietary SaaS Lock-In',
+                    ],
+                ],
+                'notice' => 'Tailored pilot deployment scoping for enterprise engineering, operations & IT security teams.',
+                'cta_label' => 'Claim Free Enterprise Demo',
+                'cta_url' => 'https://anara.com?via=aihub',
+                'cta_sub' => 'Official verified partner link • Priority architecture session',
+            ],
         ],
 
         'typeless' => [
@@ -171,6 +219,30 @@ return [
                 ['label' => 'Cross-Platform & Per-App Tone Adaptation', 'score' => '4.9', 'percent' => 98],
                 ['label' => 'Privacy Protection (Zero Cloud Audio Retention)', 'score' => '5.0', 'percent' => 100],
                 ['label' => 'Pricing Value ($0 Free Tier / $12 Annual Pro)', 'score' => '4.8', 'percent' => 96],
+            ],
+            'popup' => [
+                'bg_image' => 'images/spotlights/popup-typeless.jpg',
+                'eyebrow' => 'Product Hunt #1 Partner Deal',
+                'ribbon_title' => 'EXCLUSIVE $5 CREDIT & 60% OFF',
+                'subtitle' => 'Speak naturally at 220 WPM and turn speech into clean, formatted writing 4× faster than typing.',
+                'cards' => [
+                    [
+                        'icon' => 'mic',
+                        'highlight' => 'Save 60% Yearly',
+                        'label' => 'Typeless Pro Unlimited ($12/mo)',
+                        'pill' => 'Saves ~1 Full Workday / Week',
+                    ],
+                    [
+                        'icon' => 'gift',
+                        'highlight' => '+$5 Pro Credit',
+                        'label' => 'Referral Bonus + 50% Student Off',
+                        'pill' => 'Mac, Windows, Linux, iOS & Android',
+                    ],
+                ],
+                'notice' => 'Includes $0 Free Plan onboarding, 100+ languages & strict zero cloud audio retention.',
+                'cta_label' => 'Claim $5 Bonus & 60% Off',
+                'cta_url' => 'https://www.typeless.com/?via=aihubb',
+                'cta_sub' => 'Official verified partner link • Start free with no card required',
             ],
         ],
     ],
