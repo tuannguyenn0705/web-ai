@@ -241,7 +241,7 @@ return [
                 ],
                 'notice' => 'Includes $0 Free Plan onboarding, 100+ languages & strict zero cloud audio retention.',
                 'cta_label' => 'Claim $5 Bonus & 60% Off',
-                'cta_url' => 'https://www.typeless.com/?via=aihubb',
+                'cta_url' => 'https://www.typeless.com/?via=aihubinsider',
                 'cta_sub' => 'Official verified partner link • Start free with no card required',
             ],
         ],
