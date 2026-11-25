@@ -79,10 +79,11 @@ class AiSpotlightsTest extends TestCase
         $response->assertSee('Visit Official Site');
         $response->assertSee('Try Typeless Free Now');
         $response->assertSee('logo-typeless.png');
-        $response->assertSee('https://www.typeless.com/?via=aihubb');
-        $response->assertSee('https://www.typeless.com/pricing?via=aihubb');
-        $response->assertSee('https://www.typeless.com/referral?via=aihubb');
-        $response->assertSee('https://www.typeless.com/students?via=aihubb');
+        $response->assertSee('https://www.typeless.com/?via=aihubinsider');
+        $response->assertSee('https://www.typeless.com/pricing?via=aihubinsider');
+        $response->assertSee('https://www.typeless.com/referral?via=aihubinsider');
+        $response->assertSee('https://www.typeless.com/students?via=aihubinsider');
+        $response->assertDontSee('via=aihubb');
         $response->assertSee('typeless-preview.svg');
         $response->assertSee('id="spotlight-offer-modal"', false);
         $response->assertSee('popup-typeless.jpg');
@@ -126,7 +127,8 @@ class AiSpotlightsTest extends TestCase
         $typelessResponse->assertStatus(200);
         $typelessResponse->assertSee('Typeless Review (2026)');
         $typelessResponse->assertSee('typelessreview.aihubinsider.com');
-        $typelessResponse->assertSee('https://www.typeless.com/?via=aihubb');
+        $typelessResponse->assertSee('https://www.typeless.com/?via=aihubinsider');
+        $typelessResponse->assertDontSee('via=aihubb');
 
         // Fallback /ai/* paths continue to work as well
         $this->get('/ai/iapply')->assertStatus(200);

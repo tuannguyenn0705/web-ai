@@ -17,7 +17,7 @@
                 'Team management & centralized billing',
             ],
             'cta' => 'Start Free & Save 60%',
-            'url' => 'https://www.typeless.com/pricing?via=aihubb',
+            'url' => 'https://www.typeless.com/pricing?via=aihubinsider',
             'note' => 'Compare $12/mo annual vs $30/mo monthly',
         ],
         [
@@ -31,7 +31,7 @@
                 'Includes 100+ languages & Whisper Mode',
             ],
             'cta' => 'Claim $5 Pro Credit',
-            'url' => 'https://www.typeless.com/referral?via=aihubb',
+            'url' => 'https://www.typeless.com/referral?via=aihubinsider',
             'note' => 'Applies to individual desktop checkouts',
         ],
         [
@@ -45,7 +45,7 @@
                 'Zero data retention & private local history',
             ],
             'cta' => 'Verify Student Status',
-            'url' => 'https://www.typeless.com/students?via=aihubb',
+            'url' => 'https://www.typeless.com/students?via=aihubinsider',
             'note' => '*50% off $12/mo annual Pro desktop rate',
         ],
     ];

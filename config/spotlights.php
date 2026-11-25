@@ -8,7 +8,7 @@ return [
     | Official Partner / Affiliate Referral Links:
     | - AIApply:  https://www.aiapply.co/?via=aihubinsider
     | - ANARA:    https://anara.com?via=aihub
-    | - Typeless: https://www.typeless.com/?via=aihubb
+    | - Typeless: https://www.typeless.com/?via=aihubinsider
     */
 
     'items' => [
@@ -180,9 +180,9 @@ return [
             'category' => 'AI Voice Productivity',
             'badge' => 'SAVE 60% + $5 CREDIT',
             'offer_badge' => '#1 Product of the Day • Free Tier',
-            'ref_url' => 'https://www.typeless.com/?via=aihubb',
-            'primary_url' => 'https://www.typeless.com/?via=aihubb',
-            'secondary_url' => 'https://www.typeless.com/referral?via=aihubb',
+            'ref_url' => 'https://www.typeless.com/?via=aihubinsider',
+            'primary_url' => 'https://www.typeless.com/?via=aihubinsider',
+            'secondary_url' => 'https://www.typeless.com/referral?via=aihubinsider',
             'cta_primary' => 'Try Typeless Free Now',
             'cta_secondary' => 'Claim $5 Pro Credit Offer',
             'banner_image' => 'images/banners/typeless-banner.png',
@@ -206,10 +206,10 @@ return [
                 'Privacy & Security' => 'Zero Cloud Data Retention, Zero AI Training, SOC 2 / ISO 27001 / GDPR / HIPAA',
             ],
             'tags' => [
-                ['label' => 'Download App', 'url' => 'https://www.typeless.com/?via=aihubb'],
-                ['label' => 'Free & Pro Pricing ($12/mo)', 'url' => 'https://www.typeless.com/pricing?via=aihubb'],
-                ['label' => '$5 Pro Referral Bonus', 'url' => 'https://www.typeless.com/referral?via=aihubb'],
-                ['label' => '50% Student Discount', 'url' => 'https://www.typeless.com/students?via=aihubb'],
+                ['label' => 'Download App', 'url' => 'https://www.typeless.com/?via=aihubinsider'],
+                ['label' => 'Free & Pro Pricing ($12/mo)', 'url' => 'https://www.typeless.com/pricing?via=aihubinsider'],
+                ['label' => '$5 Pro Referral Bonus', 'url' => 'https://www.typeless.com/referral?via=aihubinsider'],
+                ['label' => '50% Student Discount', 'url' => 'https://www.typeless.com/students?via=aihubinsider'],
                 ['label' => '220 WPM Benchmark', 'url' => '#evaluation-scorecard'],
                 ['label' => '100+ Languages & Privacy', 'url' => '#typeless-features'],
             ],
